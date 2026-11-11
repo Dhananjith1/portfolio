@@ -5,6 +5,8 @@ Static portfolio website (plain HTML, CSS and JavaScript, no build step).
 ## Files
 - `index.html` – the whole website. All content lives in the `DEF` block near the top of the script, between the `EDIT YOUR CONTENT HERE` comments.
 - `assets/photo.webp` – profile photo (background removed).
+- `assets/portfolio-preview.png` – Open Graph image for LinkedIn and other social previews.
+- `infecsure.html` – academic InfecSure project case study.
 - `CV.pdf` – file used by the Download CV button. Replace it with a new PDF using the same name to update the CV.
 
 ## Publish on GitHub Pages
@@ -21,5 +23,5 @@ Static portfolio website (plain HTML, CSS and JavaScript, no build step).
 
 ## Notes
 - The built-in edit mode from the Claude version is disabled here. Edit the `DEF` data instead.
-- Email button opens a Gmail compose window. Phone link opens WhatsApp.
+- Email button opens a Gmail compose window. LinkedIn is the primary social contact link; the personal phone number is not displayed publicly.
 - Keep CV, LinkedIn and this site consistent before applying.

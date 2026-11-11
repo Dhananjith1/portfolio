@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Explore my academic background, project experience, skills, and independent learning work in IT project management and Agile delivery.">
 <meta name="twitter:image" content="https://dhananjith1.github.io/portfolio/assets/portfolio-preview.png"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%92%BC%3C/text%3E%3C/svg%3E"><title>Dhananjith Swarnahansa | Project Manager Intern</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"></noscript>
 <style>
 :root{--bg:#f4f7fc;--card:#fff;--tx:#0f172a;--mu:#556079;--bd:rgba(15,23,42,.1);--ac:#2563eb;--ac2:#06b6d4;--hd:rgba(244,247,252,.85);--sh:0 10px 30px rgba(37,99,235,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b16;--card:#0f1629;--tx:#e8ecf6;--mu:#93a0ba;--bd:rgba(255,255,255,.09);--ac:#4f8cff;--ac2:#22d3ee;--hd:rgba(7,11,22,.85);--sh:0 10px 30px rgba(0,0,0,.4)}}
@@ -98,7 +98,7 @@ body.edit .add{display:inline-block}
 #md .r{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
 #md .r button{border:0;border-radius:10px;padding:10px 18px;font:600 14px Inter;cursor:pointer;background:var(--ac);color:#fff}#md .r button.c{background:var(--bd);color:var(--tx)}
 main{position:relative;z-index:1}
-#pg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));z-index:50}
+#pg{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left center;will-change:transform;background:linear-gradient(90deg,var(--ac),var(--ac2));z-index:50}
 #gl{position:fixed;left:0;top:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--ac) 22%,transparent),transparent 65%);pointer-events:none;z-index:0;transition:transform .12s linear}
 .orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none;z-index:0;animation:fl 12s ease-in-out infinite alternate}
 .o1{width:380px;height:380px;background:var(--ac);top:-100px;left:-120px}.o2{width:340px;height:340px;background:var(--ac2);right:-100px;top:35%;animation-delay:-4s}.o3{width:300px;height:300px;background:#a855f7;left:25%;bottom:-120px;animation-delay:-8s;opacity:.22}
@@ -140,7 +140,7 @@ body.edit .ctl{flex-wrap:wrap;justify-content:flex-end;max-width:92%;z-index:5}
 .hl .sm{color:var(--mu);font-style:normal;font-size:12px;font-weight:600}
 .chip.top{background:var(--ac);color:#fff;border-color:transparent;font-weight:600}
 #bar{display:none!important}#bar.on{display:flex!important}#ex1,#im1{display:none!important}
-@media(max-width:760px){html{scroll-padding-top:110px}header .w{flex-wrap:wrap;height:auto;padding-top:8px;padding-bottom:4px}nav{display:flex;order:3;width:100%;overflow-x:auto;gap:18px;padding:8px 0;white-space:nowrap}}
+@media(max-width:760px){html{scroll-padding-top:110px}header .w{flex-wrap:wrap;height:auto;padding-top:8px;padding-bottom:4px}nav{display:flex;order:3;width:100%;overflow-x:auto;gap:18px;padding:8px 0;white-space:nowrap}.orb,.fc,.pill,.grad,.btn.p{animation:none!important}#gl{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style><style></style><style></style></head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 <header><div class="w"><a class="logo" href="#top" aria-label="Home" title="Home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h5v-6h4v6h5V10"></path></svg></a>
@@ -480,7 +480,7 @@ function typer(){const el=$("#ht"),w=D.prof[0].title.split("|").map(s=>s.trim())
 function fx(){document.querySelectorAll(".card,.st,.sh,.pic,.ct").forEach((el,i)=>{if(el.classList.contains("rv"))return;el.classList.add("rv");el.style.transitionDelay=(i%4)*90+"ms";io.observe(el)});typer()}
 const R0=render;render=()=>{R0();fx()};
 document.addEventListener("mousemove",e=>{$("#gl").style.transform=`translate(${e.clientX}px,${e.clientY}px)`;});
-addEventListener("scroll",()=>{const h=document.documentElement;$("#pg").style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+"%"},{passive:true});
+let progressFrame=false;function updateProgress(){progressFrame=false;const max=document.documentElement.scrollHeight-innerHeight;const progress=max>0?Math.min(1,scrollY/max):0;$("#pg").style.transform=`scaleX(${progress})`}const queueProgress=()=>{if(!progressFrame){progressFrame=true;requestAnimationFrame(updateProgress)}};addEventListener("scroll",queueProgress,{passive:true});addEventListener("resize",queueProgress,{passive:true});queueProgress();
 
 function toast(m){let t=document.getElementById("ts");if(!t){t=document.createElement("div");t.id="ts";t.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:14px;z-index:60";document.body.appendChild(t)}t.textContent=m;t.style.display="block";clearTimeout(t._h);t._h=setTimeout(()=>t.style.display="none",2800)}
 async function dlCV(){try{let d=null;try{d=await claude.use("downloads")}catch(z){}const s=atob(document.getElementById("cvd").textContent.trim()),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);const bl=new Blob([u],{type:"application/pdf"});if(d)await d.save({filename:"Dhananjith_Swarnahansa_CV.pdf",data:bl});else{const l=document.createElement("a");l.href=URL.createObjectURL(bl);l.download="Dhananjith_Swarnahansa_CV.pdf";document.body.appendChild(l);l.click();l.remove()}}catch(x){if(!x||x.code!="declined")toast("Download failed, please try again")}}
