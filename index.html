@@ -135,7 +135,7 @@ body.edit .ctl{flex-wrap:wrap;justify-content:flex-end;max-width:92%;z-index:5}
 <div class="hero"><div class="w"><div>
 <span class="pill">● Open to internships</span>
 <h1 id="hn">Hi, I’m <span class="grad">Dhananjith Swarnahansa</span></h1><h3 id="ht">Project Manager<i class="cr"></i></h3><p id="hg">Industrial Information Technology undergraduate focused on IT project management, Agile delivery, and clear stakeholder communication.</p>
-<div class="btns"><a class="btn p" id="cv" download="Dhananjith_Swarnahansa_CV.pdf" target="_blank" href="https://drive.google.com/file/d/1_VdBgHme994og_Jm1eAUo8Ttz0WXpTPx/view?usp=drive_link" style="">Download CV</a><a class="btn" id="em" href="#contact">Contact Me</a></div>
+<div class="btns"><a class="btn p" id="cv" download="Dhananjith_Swarnahansa_CV.pdf" href="CV.pdf" style="">Download CV</a><a class="btn" id="em" href="#contact">Contact Me</a></div>
 <div class="soc" id="soc"><a href="https://linkedin.com/in/dhananjith-sathruwan-swarnahansa" target="_blank">in LinkedIn</a><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=swarnahansa2%40gmail.com&amp;su=Hello%20from%20your%20portfolio" target="_blank" rel="noopener noreferrer">✉ swarnahansa2@gmail.com</a><a href="https://wa.me/94740083750" target="_blank" rel="noopener noreferrer">☎ +94 740083750</a><span>⌖ Galle, Sri Lanka</span></div></div>
 <div class="pic" style=""><img src="assets/photo.webp" alt="Dhananjith Swarnahansa"><span class="fc" style="left:-2%;top:22%">⚡ Agile</span><span class="fc" style="right:-2%;top:40%;animation-delay:-2s">📋 Scrum</span><span class="fc" style="left:2%;bottom:18%;animation-delay:-3.5s">🎯 Jira</span><span class="fc" style="right:-3%;top:11%;animation-delay:-1s">📘 Confluence</span><span class="fc" style="right:1%;bottom:12%;animation-delay:-4.5s">📊 Excel</span></div>
 <div style="grid-column:1/-1"><div class="sh" style="margin: 0px 0px -14px;"><button class="add" data-a="e" data-k="prof" data-i="0">✎ Edit profile</button><button class="add" data-a="n" data-k="stats">+ Stat</button></div><div class="stats" id="stats"></div></div>
@@ -245,6 +245,18 @@ const DEF={
   }
  ],
  "proj": [
+  {
+   "title": "Project Management Study Resource (PM-Academy)",
+   "tag": "Project Initiator & Product Concept Designer · Independent Project",
+   "desc": [
+    "Initiated and shaped a free, independent learning resource for students and early-career professionals exploring project management.",
+    "Organized 27 lessons into six learning areas and defined an EVM calculator, searchable glossary, 13-question quiz, and browser-based lesson-progress tracking."
+   ],
+   "highlight": "Published on GitHub Pages · AI-assisted front-end development",
+   "link": "https://dhananjith1.github.io/PM-Academy/",
+   "linkLabel": "Open learning resource",
+   "art": "code"
+  },
   {
    "title": "InfecSure — AI-Assisted Infection Monitoring",
    "tag": "Project Manager (Lead) · FastAPI / React / ML · Campus Project",
@@ -356,9 +368,9 @@ const DEF={
 // ===================== END OF CONTENT =====================
 const SC={prof:[["name","t"],["title","t"],["tagline","a1"],["about","a1"],["email","t"],["phone","t"],["location","t"],["linkedin","t"],["cv","t"]],
 stats:[["num","t"],["label","t"]],skills:[["group","t"],["items","l"]],exp:[["role","t"],["company","t"],["period","t"],["bullets","a"]],
-proj:[["title","t"],["tag","t"],["desc","a"],["highlight","t"],["link","t"],["art","t"]],lead:[["role","t"],["org","t"],["period","t"],["bullets","a"]],
+proj:[["title","t"],["tag","t"],["desc","a"],["highlight","t"],["link","t"],["linkLabel","t"],["art","t"]],lead:[["role","t"],["org","t"],["period","t"],["bullets","a"]],
 edu:[["title","t"],["org","t"],["period","t"]],cert:[["title","t"],["org","t"]]};
-const LB={art:"Cover style (telecom, supply, transit, drone, cold, health, code) - leave empty for auto",cv:"CV PDF link (URL)",items:"Items (comma separated)",bullets:"Bullet points (one per line)",desc:"Description (one per line)",link:"Case study link (URL)"};
+const LB={art:"Cover style (telecom, supply, transit, drone, cold, health, code) - leave empty for auto",cv:"CV PDF link (URL)",linkLabel:"Project link label",items:"Items (comma separated)",bullets:"Bullet points (one per line)",desc:"Description (one per line)",link:"Case study link (URL)"};
 const GR={telecom:['#2563eb','#06b6d4'],supply:['#7c3aed','#2563eb'],transit:['#059669','#0ea5e9'],drone:['#f97316','#db2777'],cold:['#0ea5e9','#6366f1'],health:['#e11d48','#7c3aed'],code:['#334155','#2563eb']};
 const SCN={
 telecom:`<g fill='#fff'><rect class='bar' x='60' y='95' width='22' height='55' rx='4' opacity='.8'/><rect class='bar' x='92' y='70' width='22' height='80' rx='4' style='animation-delay:.2s' opacity='.8'/><rect class='bar' x='124' y='105' width='22' height='45' rx='4' style='animation-delay:.4s' opacity='.8'/><rect class='bar' x='156' y='50' width='22' height='100' rx='4' style='animation-delay:.6s'/></g><circle cx='270' cy='98' r='40' fill='none' stroke='#fff' stroke-opacity='.25' stroke-width='14'/><circle cx='270' cy='98' r='40' fill='none' stroke='#fff' stroke-width='14' stroke-dasharray='170 251' stroke-linecap='round' transform='rotate(-90 270 98)'/><text x='270' y='104' text-anchor='middle' fill='#fff' font-size='17' font-weight='700'>SLA</text><g fill='none' stroke='#fff' stroke-width='3' stroke-linecap='round'><path class='sg' d='M335 62a28 28 0 0 1 28 28'/><path class='sg' style='animation-delay:.4s' d='M335 44a46 46 0 0 1 46 46'/></g>`,
@@ -385,7 +397,7 @@ $("#soc").innerHTML=$("#soc2").innerHTML=so;
 $("#stats").innerHTML=D.stats.map((s,i)=>`<div class="st">${ctl("stats",i)}<b>${E(s.num)}</b><span>${E(s.label)}</span></div>`).join("");
 $("#sk").innerHTML=D.skills.map((s,i)=>`<div class="card">${ctl("skills",i)}<h3>${E(s.group)}</h3><div class="chips">${s.items.map(x=>`<span class="chip${x[0]=="★"?" top":""}">${E(x)}</span>`).join("")}</div></div>`).join("");
 $("#ex").innerHTML=D.exp.map((s,i)=>`<div class="card">${ctl("exp",i)}<div class="per">${E(s.period)}</div><h3>${E(s.role)}</h3><span class="tag">${E(s.company)}</span>${ul(s.bullets)}</div>`).join("");
-$("#pj").innerHTML=D.proj.map((s,i)=>`<div class="card">${ctl("proj",i)}${cover(s,i)}<span class="bdg ${/campus/i.test(s.tag)?"real":"sim"}">${/campus/i.test(s.tag)?"● Real project (Campus)":"◌ Simulation"}</span><h3>${E(s.title)}</h3><span class="tag">${E(s.tag)}</span>${ul(s.desc)}${s.highlight?`<div class="hl">★ ${E(s.highlight)}${!/campus/i.test(s.tag)&&!/simulat/i.test(s.highlight)?' <em class="sm">· simulated result</em>':""}</div>`:""}${s.link?`<a class="lk" target="_blank" href="${E(s.link)}">Case Study ↗</a>`:""}</div>`).join("");
+$("#pj").innerHTML=D.proj.map((s,i)=>`<div class="card">${ctl("proj",i)}${cover(s,i)}<span class="bdg ${/campus|independent/i.test(s.tag)?"real":"sim"}">${/independent/i.test(s.tag)?"● Published independent project":/campus/i.test(s.tag)?"● Real project (Campus)":"◌ Simulation"}</span><h3>${E(s.title)}</h3><span class="tag">${E(s.tag)}</span>${ul(s.desc)}${s.highlight?`<div class="hl">★ ${E(s.highlight)}${!/campus/i.test(s.tag)&&!/simulat/i.test(s.highlight)?' <em class="sm">· simulated result</em>':""}</div>`:""}${s.link?`<a class="lk" target="_blank" rel="noopener noreferrer" href="${E(s.link)}">${E(s.linkLabel||"Case Study")} ↗</a>`:""}</div>`).join("");
 $("#ld").innerHTML=D.lead.map((s,i)=>`<div class="card">${ctl("lead",i)}<div class="per">${E(s.period)}</div><h3>${E(s.role)}</h3><span class="tag">${E(s.org)}</span>${ul(s.bullets)}</div>`).join("");
 $("#ed").innerHTML=D.edu.map((s,i)=>`<div class="card">${ctl("edu",i)}<div class="per">${E(s.period)}</div><h3 style="font-size:17px">${E(s.title)}</h3><span class="tag">${E(s.org)}</span></div>`).join("");
 $("#ce").innerHTML=D.cert.map((s,i)=>`<div class="card">${ctl("cert",i)}<h3 style="font-size:17px">${E(s.title)}</h3><span class="tag">${E(s.org)}</span></div>`).join("");}
