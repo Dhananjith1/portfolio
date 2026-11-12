@@ -142,19 +142,216 @@ body.edit .ctl{flex-wrap:wrap;justify-content:flex-end;max-width:92%;z-index:5}
 #bar{display:none!important}#bar.on{display:flex!important}#ex1,#im1{display:none!important}
 @media(max-width:760px){html{scroll-padding-top:110px}header .w{flex-wrap:wrap;height:auto;padding-top:8px;padding-bottom:4px}nav{display:flex;order:3;width:100%;overflow-x:auto;gap:18px;padding:8px 0;white-space:nowrap}.orb,.fc,.pill,.grad,.btn.p{animation:none!important}#gl{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* ===== Reference-inspired midnight blue portfolio redesign ===== */
+:root,:root[data-theme="dark"]{color-scheme:dark;--bg:#020b18;--card:#07172b;--tx:#f3f7ff;--mu:#bdcbe0;--bd:rgba(116,167,232,.18);--ac:#178cff;--ac2:#08c2ff;--hd:rgba(2,10,22,.92);--sh:0 18px 50px rgba(0,0,0,.32)}
+:root[data-theme="light"]{color-scheme:light;--bg:#f3f7fc;--card:#fff;--tx:#101b31;--mu:#58677f;--bd:rgba(15,35,70,.13);--ac:#126ee8;--ac2:#00a8db;--hd:rgba(246,249,255,.92);--sh:0 16px 40px rgba(28,75,140,.09)}
+html{scroll-padding-top:108px}
+body{background:radial-gradient(ellipse at 76% 27%,rgba(0,105,220,.13),transparent 34%),var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif}
+body::before{height:0}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(rgba(35,135,255,.15) 1px,transparent 1px);background-size:30px 30px;mask-image:linear-gradient(90deg,transparent 48%,#000 100%);opacity:.24}
+#gl,.orb{display:none!important}
+.w{width:min(1440px,calc(100% - 72px));max-width:1440px;padding-left:0;padding-right:0}
+.site-header{position:sticky;top:0;z-index:30;background:var(--hd);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd)}
+.header-inner{min-height:106px;display:flex;align-items:center;justify-content:space-between;gap:26px}
+.brand{display:flex;align-items:center;gap:15px;min-width:300px;color:var(--tx)}
+.brand-mark{width:62px;height:62px;display:grid;place-items:center;flex:none}
+.brand-mark svg{width:100%;height:100%}
+.brand-mark svg path:first-of-type{fill:url(#brandGrad)}
+.brand-copy{display:grid;gap:3px;line-height:1.2}
+.brand-copy strong{font:700 21px 'Space Grotesk',Inter,sans-serif;letter-spacing:-.035em}
+.brand-copy small{color:var(--mu);font-size:17px}
+.primary-nav{display:flex;align-items:center;justify-content:flex-end;gap:5px;flex:1}
+.primary-nav a{display:inline-flex;align-items:center;gap:8px;padding:13px 13px;border-radius:20px;color:var(--tx);font-size:15px;white-space:nowrap;transition:background .2s,color .2s}
+.primary-nav a svg,.header-actions svg,.btn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.primary-nav a:hover,.primary-nav a.active{background:rgba(20,124,255,.14);color:#16a3ff}
+.primary-nav a:first-child svg{fill:currentColor;stroke:none}
+.header-actions{display:flex;align-items:center;gap:8px}
+.ib{width:42px;height:42px;display:grid;place-items:center;border:1px solid transparent;background:transparent;color:var(--tx);border-radius:50%;padding:0;cursor:pointer}
+.ib:hover{background:rgba(28,136,255,.13);color:#26a6ff}
+.menu-toggle{display:none}
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:30px 0 28px;min-height:calc(100svh - 106px);display:flex;align-items:stretch;background:radial-gradient(ellipse at 68% 46%,rgba(0,106,236,.18),transparent 36%),linear-gradient(115deg,rgba(1,9,20,.3),transparent 55%)}
+.hero::before{content:"";position:absolute;width:740px;height:740px;right:4%;top:5%;border-radius:50%;background:radial-gradient(circle,rgba(0,130,255,.17),rgba(0,88,190,.08) 48%,transparent 70%);z-index:-1}
+.hero::after{content:"";position:absolute;left:28%;right:-10%;bottom:-120px;height:240px;background:linear-gradient(155deg,transparent 20%,rgba(0,105,255,.16) 39%,rgba(0,73,170,.22) 53%,transparent 75%);transform:skewY(-8deg);z-index:-1}
+.hero-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(400px,.95fr);grid-template-rows:minmax(540px,1fr) auto;align-items:center;column-gap:20px;row-gap:0}
+.hero-copy{position:relative;z-index:4;align-self:center;padding:34px 0 70px;max-width:710px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:#48adff;font-size:12px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;padding:9px 14px;border:1px solid rgba(48,149,255,.25);border-radius:99px;background:rgba(12,75,145,.17)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:#17a5ff;box-shadow:0 0 14px #1598ff}
+.hero h1{display:grid;gap:0;margin:25px 0 20px;letter-spacing:-.065em}
+.hero h1 .hello{font-size:clamp(35px,4.2vw,56px);font-weight:600;letter-spacing:-.045em;line-height:1.15;color:#e7efff}
+.hero-name{display:grid;font-size:clamp(58px,7.1vw,104px);font-weight:700;line-height:.99}
+.hero-name>span:first-child{color:#f7faff}
+.hero-name .grad{display:inline-block;background:linear-gradient(100deg,#5caaff 0%,#148bff 58%,#12c7f4 100%);background-clip:text;-webkit-background-clip:text;color:transparent;position:relative}
+.hero-name .grad::after{content:"";position:absolute;left:4%;right:-5%;bottom:-9px;height:5px;border-radius:50%;background:linear-gradient(90deg,#278cff,#03bff4,transparent);transform:rotate(-2deg)}
+.hero .hero-role{min-height:32px;margin:22px 0 18px;color:#f3f7ff;font-size:clamp(17px,1.8vw,23px);font-weight:600;line-height:1.45}
+.hero .hero-intro{max-width:640px;margin:0 0 32px;color:#c4d0e4;font-size:clamp(16px,1.55vw,21px);line-height:1.7}
+.btns{display:flex;flex-wrap:wrap;align-items:center;gap:17px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:62px;padding:15px 24px;border-radius:999px;border:1.5px solid rgba(242,247,255,.82);background:rgba(7,19,37,.45);color:#f6f9ff;font-size:17px;font-weight:600;transition:transform .22s,box-shadow .22s,background .22s}
+.btn.p{background:linear-gradient(105deg,#286dff,#068ff2 70%,#08b6eb);border:0;color:#fff;box-shadow:0 12px 30px rgba(0,112,255,.26);animation:none}
+.btn:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(0,111,255,.22)}
+.btn.p:hover{background:linear-gradient(105deg,#3880ff,#08a4fa 70%,#15c4f2)}
+.btn .arrow{font-size:24px;line-height:1;margin-left:1px}
+.cv-btn:hover{background:rgba(255,255,255,.08)}
+.soc{display:flex;align-items:center;gap:14px;margin-top:30px}
+.social-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:rgba(130,155,197,.16);border:1px solid rgba(180,205,245,.08);color:#f4f8ff;font-weight:700;font-size:18px;transition:transform .2s,background .2s,color .2s}
+.social-icon:hover{transform:translateY(-4px);background:#137fe8;color:#fff}
+.social-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.portrait-stage{position:relative;align-self:stretch;justify-self:stretch;min-height:580px;max-height:690px;aspect-ratio:auto;display:flex;align-items:flex-end;justify-content:center;isolation:isolate}
+.portrait-aura{position:absolute;z-index:-2;width:min(94%,640px);aspect-ratio:1;left:50%;top:49%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(0,132,255,.34),rgba(0,85,210,.2) 48%,transparent 71%);filter:blur(8px)}
+.portrait-ring{position:absolute;z-index:-1;width:min(96%,620px);aspect-ratio:1;left:50%;top:49%;transform:translate(-50%,-50%);border:1px solid rgba(20,139,255,.65);border-radius:50%;box-shadow:0 0 35px rgba(0,132,255,.12),inset 0 0 34px rgba(0,132,255,.08)}
+.portrait-ring::before{content:"";position:absolute;inset:7%;border-radius:50%;border:1px solid rgba(20,139,255,.13)}
+.portrait-grid{position:absolute;right:-2%;top:8%;width:170px;height:110px;background-image:radial-gradient(#0878d9 1.5px,transparent 1.5px);background-size:16px 16px;opacity:.56}
+.portrait-stage img{position:relative;z-index:2;width:min(100%,540px);height:100%;max-height:690px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 22px 36px rgba(0,0,0,.55))}
+.fc{position:absolute;z-index:4;padding:9px 15px;border-radius:13px;background:rgba(5,20,42,.78);border:1px solid rgba(69,159,255,.34);box-shadow:0 10px 28px rgba(0,0,0,.2);color:#dcecff;font-size:13px;font-weight:600;backdrop-filter:blur(12px);animation:fl 6s ease-in-out infinite alternate}
+.float-one{left:0;top:28%}.float-two{right:0;top:43%;animation-delay:-2s}.float-three{left:5%;bottom:18%;animation-delay:-3.6s}
+.connect-note{position:absolute;z-index:3;right:-1%;top:42%;font:italic 500 clamp(22px,2.6vw,34px) 'Space Grotesk',sans-serif;line-height:1.15;color:#f3f7ff;transform:rotate(-8deg);text-shadow:0 5px 24px rgba(0,112,255,.34);pointer-events:none}
+.connect-note span{display:inline-block;color:#3da0ff;font-size:25px;margin-left:8px}
+.hero-stats-shell{grid-column:1/-1;position:relative;z-index:6;margin:0 0 0;padding:0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:21px 18px;border:1px solid rgba(52,143,244,.44);border-radius:23px;background:linear-gradient(110deg,rgba(4,18,37,.91),rgba(8,26,52,.86));box-shadow:0 20px 60px rgba(0,0,0,.23);backdrop-filter:blur(18px)}
+.st{min-width:0;display:flex;align-items:center;justify-content:center;gap:19px;text-align:left;padding:8px 22px;background:transparent;border:0;border-right:1px solid rgba(125,163,215,.13);border-radius:0;box-shadow:none}
+.st:last-child{border-right:0}
+.st-icon{width:56px;height:56px;display:grid;place-items:center;flex:none;color:#198bff}
+.st-icon svg{width:52px;height:52px;fill:currentColor;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+.st-icon.gold{color:#ffb436}
+.st-copy{min-width:0;display:grid;gap:3px}
+.st-copy b{font:600 clamp(15px,1.5vw,20px)/1.25 Inter,sans-serif;color:#f5f8ff;overflow-wrap:anywhere}
+.st-copy>span{font-size:clamp(13px,1.2vw,17px);line-height:1.35;color:#d1ddf0}
+.st .ctl{top:2px;right:2px}
+section{padding:82px 0;scroll-margin-top:108px}
+section:nth-of-type(odd){background:rgba(7,20,39,.35)}
+.sh h2{background:linear-gradient(90deg,#f2f6ff,#58aaff);background-clip:text;-webkit-background-clip:text;color:transparent}
+.card{background:linear-gradient(145deg,rgba(9,27,50,.94),rgba(5,17,34,.94));border:1px solid rgba(102,158,223,.16);box-shadow:0 14px 38px rgba(0,0,0,.2);border-radius:20px}
+.card p,.card li{color:#bccbe1}
+.card h3{color:#f1f6ff}
+.tag{color:#45a8ff}
+.chip{background:rgba(22,122,224,.12);border-color:rgba(104,167,231,.18);color:#dceaff}
+.chip.top{background:#167eea}
+.per{color:#91a8c8}
+.tl{border-color:rgba(93,143,201,.28)}
+.tl .card::before{box-shadow:0 0 0 5px var(--bg)}
+.ct{background:radial-gradient(circle at 50% 0%,rgba(76,174,255,.38),transparent 45%),linear-gradient(135deg,#082653,#0758aa 62%,#063e7f);border:1px solid rgba(80,166,255,.32);box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.ct p{color:#e4efff}
+.ct .btn{background:#fff;color:#09203d}
+footer{border-color:var(--bd);background:rgba(2,10,22,.66)}
+#bar{display:none!important}
+@media(max-width:1180px){.primary-nav{gap:1px}.primary-nav a{padding:11px 9px;font-size:13px;gap:6px}.primary-nav a svg{width:18px;height:18px}.brand{min-width:260px}.brand-copy strong{font-size:18px}.brand-copy small{font-size:15px}}
+@media(max-width:980px){
+  .w{width:min(100% - 48px,900px)}
+  .header-inner{min-height:82px}
+  .menu-toggle{display:grid}
+  .primary-nav{display:none;position:absolute;left:24px;right:24px;top:calc(100% + 1px);padding:12px;border:1px solid var(--bd);border-radius:18px;background:rgba(3,15,31,.97);box-shadow:0 18px 44px rgba(0,0,0,.35);grid-template-columns:repeat(2,minmax(0,1fr));z-index:40}
+  .primary-nav.open{display:grid}
+  .primary-nav a{font-size:14px;padding:12px}
+  .hero{min-height:auto;padding:35px 0 26px}
+  .hero-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.86fr);grid-template-rows:auto auto;column-gap:6px}
+  .hero-copy{padding:45px 0 52px}
+  .hero-name{font-size:clamp(54px,7vw,78px)}
+  .portrait-stage{min-height:500px;max-height:580px}
+  .portrait-stage img{max-height:580px}
+  .connect-note{display:none}
+  .st{padding:8px 12px;gap:12px}
+  .st-icon{width:42px;height:42px}.st-icon svg{width:40px;height:40px}
+}
+@media(max-width:700px){
+  html{scroll-padding-top:82px}
+  .w{width:calc(100% - 36px)}
+  .header-inner{min-height:76px;gap:10px}
+  .brand{min-width:0;gap:10px}
+  .brand-mark{width:46px;height:46px}
+  .brand-copy strong{font-size:15px}
+  .brand-copy small{font-size:13px}
+  .header-actions{gap:3px}
+  .ib{width:38px;height:38px}
+  .primary-nav{left:18px;right:18px}
+  .hero{padding:22px 0 24px}
+  .hero-layout{grid-template-columns:1fr;grid-template-rows:auto auto auto}
+  .hero-copy{padding:25px 0 12px;order:1}
+  .eyebrow{font-size:10px;letter-spacing:.11em}
+  .hero h1{margin:20px 0 14px}
+  .hero h1 .hello{font-size:36px}
+  .hero-name{font-size:clamp(51px,12vw,76px)}
+  .hero .hero-role{font-size:17px;margin:18px 0 12px}
+  .hero .hero-intro{font-size:16px;line-height:1.6;margin-bottom:22px}
+  .btns{gap:11px}
+  .btn{min-height:54px;padding:13px 17px;font-size:14px;gap:9px}
+  .btn svg{width:18px;height:18px}
+  .btn .arrow{font-size:20px}
+  .soc{margin-top:23px;gap:11px}
+  .social-icon{width:47px;height:47px}
+  .portrait-stage{order:0;min-height:380px;max-height:460px;width:100%;max-width:430px;margin:0 auto}
+  .portrait-stage img{max-height:460px;width:100%}
+  .portrait-ring{width:90%;top:50%}
+  .portrait-aura{width:92%;top:50%}
+  .portrait-grid{width:100px;height:80px;right:0}
+  .float-one{left:0;top:25%}.float-two{right:0;top:43%}.float-three{left:1%;bottom:14%}
+  .fc{font-size:11px;padding:7px 10px}
+  .hero-stats-shell{order:2;margin-top:20px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;border-radius:18px}
+  .st{justify-content:flex-start;gap:10px;padding:14px 8px;border-right:0}
+  .st:nth-child(odd){border-right:1px solid rgba(125,163,215,.13)}
+  .st:nth-child(-n+2){border-bottom:1px solid rgba(125,163,215,.13)}
+  .st-icon{width:34px;height:34px}.st-icon svg{width:32px;height:32px}
+  .st-copy b{font-size:13px}.st-copy>span{font-size:11px}
+  section{padding:60px 0;scroll-margin-top:80px}
+  .two{grid-template-columns:1fr}
+}
+@media(max-width:390px){.w{width:calc(100% - 28px)}.brand-copy strong{font-size:13px}.brand-copy small{font-size:12px}.hero-name{font-size:48px}.btn{padding:12px 13px}.st{gap:7px}.st-copy b{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.hero h1,.portrait-stage,.fc,.social-icon,.btn{animation:none!important;transition:none!important}}
 </style><style></style><style></style></head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
-<header><div class="w"><a class="logo" href="#top" aria-label="Home" title="Home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h5v-6h4v6h5V10"></path></svg></a>
-<nav><a href="#about">About</a><a href="#skills">Skills</a><a href="#exp">Experience</a><a href="#proj">Projects</a><a href="#lead">Leadership</a><a href="#edu">Education</a><a href="#contact">Contact</a></nav>
-<button class="ib" id="th" aria-label="Switch light or dark theme" title="Switch light or dark theme">◐</button></div></header>
+<header class="site-header">
+  <div class="w header-inner">
+    <a class="brand" href="#top" aria-label="Dhananjith Swarnahansa — Home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M7 7h24c17 0 27 10 27 25S48 57 31 57H7V7Z" fill="url(#brandGrad)"/><path d="M20 19h11c9 0 15 5 15 13s-6 13-15 13H20V19Z" fill="#061326"/><path d="M20 19v26h11c9 0 15-5 15-13" stroke="#168BFF" stroke-width="4" stroke-linecap="round"/></svg></span>
+      <span class="brand-copy"><strong>Dhananjith Swarnahansa</strong><small>Project Manager Intern</small></span>
+    </a>
+    <nav class="primary-nav" id="navMenu" aria-label="Main navigation">
+      <a class="active" href="#top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/></svg><span>Home</span></a>
+      <a href="#about"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span>About</span></a>
+      <a href="#proj"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg><span>Projects</span></a>
+      <a href="#skills"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6 4 4M4 20l4-.8L19 8a2.8 2.8 0 0 0-4-4L4 15l-.8 4.2Z"/><path d="M3 3l2 2M19 19l2 2"/></svg><span>Skills</span></a>
+      <a href="#edu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3 3 9 3 12 0v-5M22 9v7"/></svg><span>Education</span></a>
+      <a href="#ce"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-3Z"/><path d="m9 12 2 2 4-4"/></svg><span>Certifications</span></a>
+      <a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg><span>Contact</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="ib menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navMenu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <button class="ib theme-toggle" id="th" type="button" aria-label="Switch to light theme" title="Switch theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg></button>
+    </div>
+  </div>
+</header>
 <main id="top">
-<div class="hero"><div class="w"><div>
-<span class="pill">● Open to internships</span>
-<h1 id="hn">Hi, I’m <span class="grad">Dhananjith Swarnahansa</span></h1><p class="hero-role" id="ht">Project Manager<i class="cr"></i></p><p id="hg">Industrial Information Technology undergraduate focused on IT project management, Agile delivery, and clear stakeholder communication.</p>
-<div class="btns"><a class="btn p" id="cv" download="Dhananjith_Swarnahansa_CV.pdf" href="CV.pdf" style="">Download CV</a><a class="btn" id="em" href="#contact">Contact Me</a></div>
-<div class="soc" id="soc"><a href="https://linkedin.com/in/dhananjith-sathruwan-swarnahansa" target="_blank" rel="noopener noreferrer">in LinkedIn</a><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=swarnahansa2%40gmail.com&amp;su=Hello%20from%20your%20portfolio" target="_blank" rel="noopener noreferrer">✉ swarnahansa2@gmail.com</a><span>⌖ Galle, Sri Lanka</span></div></div>
-<div class="pic" style=""><img src="assets/photo.webp" alt="Portrait of Dhananjith Swarnahansa" width="495" height="860" loading="eager" decoding="async" fetchpriority="high"><span class="fc" style="left:-2%;top:22%">⚡ Agile</span><span class="fc" style="right:-2%;top:40%;animation-delay:-2s">📋 Scrum</span><span class="fc" style="left:2%;bottom:18%;animation-delay:-3.5s">🎯 Jira</span><span class="fc" style="right:-3%;top:11%;animation-delay:-1s">📘 Confluence</span><span class="fc" style="right:1%;bottom:12%;animation-delay:-4.5s">📊 Excel</span></div>
-<div style="grid-column:1/-1"><div class="sh" style="margin: 0px 0px -14px;"><button class="add" data-a="e" data-k="prof" data-i="0">✎ Edit profile</button><button class="add" data-a="n" data-k="stats">+ Stat</button></div><div class="stats" id="stats"></div></div>
-</div></div>
+<div class="hero">
+  <div class="w hero-layout">
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i> IT PROJECT MANAGEMENT · AGILE DELIVERY</span>
+      <h1 id="hn"><span class="hello">Hello, I’m</span><span class="hero-name"><span>Dhananjith</span><span class="grad">Swarnahansa</span></span></h1>
+      <p class="hero-role" id="ht">Project Manager Intern | IT Enthusiast | Lifelong Learner<i class="cr"></i></p>
+      <p class="hero-intro" id="hg">Exploring the intersection of technology and project management to create impactful solutions and grow in my professional journey.</p>
+      <div class="btns">
+        <a class="btn p" id="viewProjects" href="#proj"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>View My Portfolio <span class="arrow">→</span></a>
+        <a class="btn cv-btn" id="cv" download="Dhananjith_Swarnahansa_CV.pdf" href="CV.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v3h16v-3"/></svg>Download CV</a>
+      </div>
+      <div class="soc" id="soc" aria-label="Social links">
+        <a class="social-icon" href="https://linkedin.com/in/dhananjith-sathruwan-swarnahansa" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
+        <a class="social-icon" href="https://github.com/Dhananjith1" aria-label="GitHub" target="_blank" rel="noopener noreferrer">GH</a>
+        <a class="social-icon" href="mailto:swarnahansa2@gmail.com" aria-label="Email">✉</a>
+      </div>
+    </div>
+    <div class="pic portrait-stage">
+      <div class="portrait-aura"></div><div class="portrait-ring"></div><div class="portrait-grid"></div>
+      <img src="assets/photo.webp" alt="Portrait of Dhananjith Swarnahansa" width="495" height="860" loading="eager" decoding="async" fetchpriority="high">
+      <span class="fc float-one">Agile Delivery</span><span class="fc float-two">Project Planning</span><span class="fc float-three">Jira &amp; PM Tools</span>
+      <div class="connect-note">Let’s<br>Connect<span>↗</span></div>
+    </div>
+    <div class="hero-stats-shell">
+      <div class="sh hero-edit-tools" style="margin:0 0 -10px;">
+        <button class="add" data-a="e" data-k="prof" data-i="0">✎ Edit profile</button>
+        <button class="add" data-a="n" data-k="stats">+ Stat</button>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+  </div>
+</div>
 <section id="about"><div class="w"><div class="sh" style=""><h2>About Me</h2></div><div class="card" style=""><p id="ab" style="font-size:16.5px">I am an Industrial Information Technology undergraduate at Uva Wellassa University with an interest in IT project management, Agile delivery, and business analysis. I have experience supporting project coordination and documentation, alongside developing portfolio case studies focused on sprint planning, risk management, stakeholder communication, and service delivery. I am interested in applying structured project management practices to real-world IT projects while continuing to develop my professional skills.</p></div></div></section>
 <section id="skills"><div class="w"><div class="sh" style=""><h2>Skills</h2><button class="add" data-a="n" data-k="skills">+ Add</button></div><p style="color:var(--mu);font-size:14.5px;margin:-8px 0 22px">★ = tools I use most in my project work. Excel, Power BI and Confluence are also used practically.</p><div class="grid" id="sk"><div class="card" style=""><div class="ctl"><button data-a="u" data-k="skills" data-i="0" title="Move earlier">←</button><button data-a="m" data-k="skills" data-i="0" title="Move later">→</button><button data-a="e" data-k="skills" data-i="0">Edit</button><button class="x" data-a="d" data-k="skills" data-i="0">Delete</button></div><h3>Project Management</h3><div class="chips"><span class="chip">Project Scheduling</span><span class="chip">Scope Management</span><span class="chip">RAID Logs</span><span class="chip">Risk Management</span><span class="chip">Project Documentation</span><span class="chip">Resource Allocation</span></div></div><div class="card" style=""><div class="ctl"><button data-a="u" data-k="skills" data-i="1" title="Move earlier">←</button><button data-a="m" data-k="skills" data-i="1" title="Move later">→</button><button data-a="e" data-k="skills" data-i="1">Edit</button><button class="x" data-a="d" data-k="skills" data-i="1">Delete</button></div><h3>Agile &amp; Scrum</h3><div class="chips"><span class="chip">Scrum</span><span class="chip">Sprint Planning</span><span class="chip">Backlog Refinement</span><span class="chip">Daily Stand-ups</span><span class="chip">Kanban</span><span class="chip">SDLC</span></div></div><div class="card" style=""><div class="ctl"><button data-a="u" data-k="skills" data-i="2" title="Move earlier">←</button><button data-a="m" data-k="skills" data-i="2" title="Move later">→</button><button data-a="e" data-k="skills" data-i="2">Edit</button><button class="x" data-a="d" data-k="skills" data-i="2">Delete</button></div><h3>PM Tools</h3><div class="chips"><span class="chip">Jira</span><span class="chip">ClickUp</span><span class="chip">Notion</span><span class="chip">Confluence</span><span class="chip">ADO</span><span class="chip">GitHub Projects</span></div></div><div class="card" style=""><div class="ctl"><button data-a="u" data-k="skills" data-i="3" title="Move earlier">←</button><button data-a="m" data-k="skills" data-i="3" title="Move later">→</button><button data-a="e" data-k="skills" data-i="3">Edit</button><button class="x" data-a="d" data-k="skills" data-i="3">Delete</button></div><h3>Business Analysis</h3><div class="chips"><span class="chip">PRD Writing</span><span class="chip">User Stories</span><span class="chip">Excel</span><span class="chip">Power BI</span></div></div><div class="card" style=""><div class="ctl"><button data-a="u" data-k="skills" data-i="4" title="Move earlier">←</button><button data-a="m" data-k="skills" data-i="4" title="Move later">→</button><button data-a="e" data-k="skills" data-i="4">Edit</button><button class="x" data-a="d" data-k="skills" data-i="4">Delete</button></div><h3>Technical Fundamentals</h3><div class="chips"><span class="chip">REST APIs</span><span class="chip">Python</span><span class="chip">React.js</span><span class="chip">MySQL</span></div></div><div class="card" style=""><div class="ctl"><button data-a="u" data-k="skills" data-i="5" title="Move earlier">←</button><button data-a="m" data-k="skills" data-i="5" title="Move later">→</button><button data-a="e" data-k="skills" data-i="5">Edit</button><button class="x" data-a="d" data-k="skills" data-i="5">Delete</button></div><h3>Communication &amp; Leadership</h3><div class="chips"><span class="chip">Stakeholder Communication</span><span class="chip">Cross-functional Coordination</span><span class="chip">Team Leadership</span><span class="chip">Process Improvement</span></div></div></div></div></section>
 <section id="exp"><div class="w"><div class="sh" style=""><h2>Experience</h2><button class="add" data-a="n" data-k="exp">+ Add</button></div><div class="tl" id="ex"><div class="card" style=""><div class="ctl"><button data-a="u" data-k="exp" data-i="0" title="Move earlier">↑</button><button data-a="m" data-k="exp" data-i="0" title="Move later">↓</button><button data-a="e" data-k="exp" data-i="0">Edit</button><button class="x" data-a="d" data-k="exp" data-i="0">Delete</button></div><div class="per">Nov 2025 – Present</div><h3>Project Manager Intern</h3><span class="tag">Trex Labs (Private) Limited</span><ul><li>Supported senior project managers in daily project coordination and active sprint workflows.</li><li>Maintained centralized project documentation across 20+ sprint sessions (meeting minutes, decision logs, RAID logs).</li><li>Designed stakeholder presentation decks for progress reviews and executive status reporting.</li><li>Managed company digital communications and outreach workflows.</li></ul></div></div></div></section>
@@ -173,8 +370,8 @@ const DEF={
  "prof": [
   {
    "name": "Dhananjith Swarnahansa",
-   "title": "Project Manager Intern | Agile & Delivery Coordinator",
-   "tagline": "Industrial Information Technology undergraduate interested in IT project management, Agile delivery, and stakeholder communication.",
+   "title": "Project Manager Intern | IT Enthusiast | Lifelong Learner",
+   "tagline": "Exploring the intersection of technology and project management to create impactful solutions and grow in my professional journey.",
    "about": "I am an Industrial Information Technology undergraduate at Uva Wellassa University with an interest in IT project management, Agile delivery, and business analysis. My experience includes supporting project coordination and documentation, alongside academic work and independent case studies focused on sprint planning, risk management, stakeholder communication, and service delivery. I enjoy organizing ideas into clear plans and continuing to build my understanding of technology and project delivery.",
    "email": "swarnahansa2@gmail.com",
    "phone": "",
@@ -185,16 +382,20 @@ const DEF={
  ],
  "stats": [
   {
-   "num": "7",
-   "label": "Portfolio Projects"
+   "num": "BSc (Hons)",
+   "label": "Industrial IT"
   },
   {
-   "num": "27",
-   "label": "PM-Academy Lessons"
+   "num": "Project Manager Intern",
+   "label": "@ Trex Labs"
   },
   {
-   "num": "6",
-   "label": "Learning Areas"
+   "num": "7+ Projects",
+   "label": "& Initiatives"
+  },
+  {
+   "num": "Continuous",
+   "label": "Learner"
   }
  ],
  "skills": [
@@ -446,12 +647,13 @@ const save=()=>{window._d=1;const p=document.getElementById("pb");if(p)p.textCon
 const ctl=(k,i)=>{const g=["stats","skills","proj"].includes(k);return `<div class="ctl"><button data-a="u" data-k="${k}" data-i="${i}" title="Move earlier">${g?"←":"↑"}</button><button data-a="m" data-k="${k}" data-i="${i}" title="Move later">${g?"→":"↓"}</button><button data-a="e" data-k="${k}" data-i="${i}">Edit</button><button class="x" data-a="d" data-k="${k}" data-i="${i}">Delete</button></div>`};
 const ul=a=>a&&a.length?`<ul>${a.map(x=>`<li>${E(x)}</li>`).join("")}</ul>`:"";
 function render(){const p=D.prof[0];
-$("#hn").innerHTML=`Hi, I’m <span class="grad">${E(p.name)}</span>`;$("#ht").textContent=p.title;$("#hg").textContent=p.tagline;$("#ab").textContent=p.about;
+const nameParts=String(p.name||"Dhananjith Swarnahansa").trim().split(/\s+/);const firstName=nameParts.shift()||"";const familyName=nameParts.join(" ");$("#hn").innerHTML=`<span class="hello">Hello, I’m</span><span class="hero-name"><span>${E(firstName)}</span><span class="grad">${E(familyName)}</span></span>`;$("#ht").textContent=p.title;$("#hg").textContent=p.tagline;$("#ab").textContent=p.about;
 const cv=$("#cv");cv.href=p.cv||"#";cv.style.display=(p.cv||(document.getElementById("cvd")||{textContent:""}).textContent.length>100)?"":"none";
 const gm="https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(p.email)+"&su="+encodeURIComponent("Hello from your portfolio");$("#em").href="#contact";const e2=$("#em2");e2.href=gm;e2.target="_blank";e2.rel="noopener noreferrer";
-const so=`<a href="${E(p.linkedin)}" target="_blank" rel="noopener noreferrer">in LinkedIn</a><a href="${E(gm)}" target="_blank" rel="noopener noreferrer">✉ ${E(p.email)}</a><span>⌖ ${E(p.location)}</span>`;
+const so=`<a class="social-icon" href="${E(p.linkedin)}" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v10M5 5v.1M10 19v-6a3 3 0 0 1 6 0v6M10 10v9M3 9h4M3 19h4"/></svg></a><a class="social-icon" href="https://github.com/Dhananjith1" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.2 1.3-4.2-2.1-5.9-2.5M15 21v-3.3a2.9 2.9 0 0 0-.8-2.2c2.7-.3 5.5-1.3 5.5-6A4.7 4.7 0 0 0 18.4 6a4.3 4.3 0 0 0-.1-3s-1-.3-3.3 1.2a11.4 11.4 0 0 0-6 0C6.7.7 5.7 3 5.7 3a4.3 4.3 0 0 0-.1 3 4.7 4.7 0 0 0-1.3 3.5c0 4.7 2.8 5.7 5.5 6a2.9 2.9 0 0 0-.8 2.2V21"/></svg></a><a class="social-icon" href="${E(gm)}" aria-label="Email" title="Email" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>`;
 $("#soc").innerHTML=$("#soc2").innerHTML=so;
-$("#stats").innerHTML=D.stats.map((s,i)=>`<div class="st">${ctl("stats",i)}<b>${E(s.num)}</b><span>${E(s.label)}</span></div>`).join("");
+const statIcons=[`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="m3 16 21-11 21 11-21 11L3 16Z"/><path d="M11 22v12c8 7 18 7 26 0V22M45 17v13"/></svg>`,`<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="14" width="38" height="28" rx="5"/><path d="M16 14V9a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v5M5 24h38M20 24v5h8v-5"/></svg>`,`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M19 4h10l2 7 6 3 6-2 5 9-5 5 0 7-6 3-2 7H19l-2-7-6-3-6 2-5-9 5-5 0-7 6-3 2-7Z"/><circle cx="24" cy="24" r="8"/></svg>`,`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M11 6h26v8c0 10-6 17-13 17S11 24 11 14V6Z"/><path d="M11 11H5v5c0 7 5 10 11 10M37 11h6v5c0 7-5 10-11 10M24 31v8M15 43h18"/></svg>`];
+$("#stats").innerHTML=D.stats.map((s,i)=>`<div class="st">${ctl("stats",i)}<span class="st-icon ${i===3?"gold":""}">${statIcons[i%statIcons.length]}</span><span class="st-copy"><b>${E(s.num)}</b><span>${E(s.label)}</span></span></div>`).join("");
 $("#sk").innerHTML=D.skills.map((s,i)=>`<div class="card">${ctl("skills",i)}<h3>${E(s.group)}</h3><div class="chips">${s.items.map(x=>`<span class="chip${x[0]=="★"?" top":""}">${E(x)}</span>`).join("")}</div></div>`).join("");
 $("#ex").innerHTML=D.exp.map((s,i)=>`<div class="card">${ctl("exp",i)}<div class="per">${E(s.period)}</div><h3>${E(s.role)}</h3><span class="tag">${E(s.company)}</span>${ul(s.bullets)}</div>`).join("");
 $("#pj").innerHTML=D.proj.map((s,i)=>`<div class="card">${ctl("proj",i)}${cover(s,i)}<span class="bdg ${/campus|independent/i.test(s.tag)?"real":"sim"}">${/independent/i.test(s.tag)?"● Published independent project":/campus/i.test(s.tag)?"● Real project (Campus)":"◌ Simulation"}</span><h3>${E(s.title)}</h3><span class="tag">${E(s.tag)}</span>${ul(s.desc)}${s.highlight?`<div class="hl">★ ${E(s.highlight)}${!/campus|independent/i.test(s.tag)&&!/simulat/i.test(s.highlight)?' <em class="sm">· simulated result</em>':""}</div>`:""}${s.link?`<a class="lk" target="_blank" rel="noopener noreferrer" href="${E(s.link)}">${E(s.linkLabel||"Case Study")} ↗</a>`:""}</div>`).join("");
@@ -472,7 +674,12 @@ $("#ed1").onclick=()=>{document.body.classList.toggle("edit");$("#ed1").textCont
 $("#rs").onclick=()=>{{try{D=JSON.parse($("#dat").textContent);if(!D.prof)throw 0}catch(e){D=JSON.parse(JSON.stringify(DEF))}window._d=0;render()}};
 $("#ex1").onclick=()=>{const t=JSON.stringify(D,null,2);navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>alert("Portfolio data copied to clipboard. Paste it in a note to back it up."),()=>prompt("Copy your data:",t))};
 $("#im1").onclick=()=>{const t=prompt("Paste exported portfolio data:");if(!t)return;try{const d=JSON.parse(t);if(!d.prof)throw 0;D=d;save();render()}catch(e){alert("That data is not valid.")}};
-$("#th").onclick=()=>{const r=document.documentElement,d=r.dataset.theme?r.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=d?"light":"dark"};
+$("#th").onclick=()=>{const r=document.documentElement;r.dataset.theme=r.dataset.theme==="light"?"dark":"light";$("#th").setAttribute("aria-label",r.dataset.theme==="dark"?"Switch to light theme":"Switch to dark theme")};
+const navMenu=document.getElementById("navMenu"),navToggle=document.getElementById("navToggle");
+if(navToggle&&navMenu){navToggle.addEventListener("click",()=>{const open=navMenu.classList.toggle("open");navToggle.setAttribute("aria-expanded",String(open));navToggle.setAttribute("aria-label",open?"Close navigation menu":"Open navigation menu")});navMenu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{navMenu.classList.remove("open");navToggle.setAttribute("aria-expanded","false");navToggle.setAttribute("aria-label","Open navigation menu")}))}
+const navTargets=["about","proj","skills","edu","ce","contact"].map(id=>document.getElementById(id)).filter(Boolean);
+if("IntersectionObserver" in window&&navTargets.length){const navObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;navMenu?.querySelectorAll("a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+entry.target.id))})},{rootMargin:"-30% 0px -60% 0px"});navTargets.forEach(el=>navObserver.observe(el))}
+addEventListener("scroll",()=>{if(scrollY<160)navMenu?.querySelectorAll("a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#top"))},{passive:true});
 $("#yr").textContent=new Date().getFullYear();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add("in");if(t.classList.contains("st"))cnt(t.querySelector("b"));io.unobserve(t);setTimeout(()=>t.classList.add("done"),1100)}),{threshold:.1});
 function cnt(el){const t=el.textContent,m=t.match(/[\d,]+/);if(!m)return;const n=+m[0].replace(/,/g,""),pre=t.slice(0,m.index),suf=t.slice(m.index+m[0].length);let s=null;const f=ts=>{s=s||ts;const p=Math.min((ts-s)/1500,1);el.textContent=pre+Math.round(n*(1-Math.pow(1-p,3))).toLocaleString("en-US")+suf;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
