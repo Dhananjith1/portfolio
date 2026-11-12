@@ -350,7 +350,14 @@ footer{border-color:var(--bd);background:rgba(2,10,22,.66)}
 /* Explicit vertical separation between the name and animated role */
 .hero .hero-role{margin-top:46px!important}
 @media(max-width:700px){.hero .hero-role{margin-top:34px!important}}
-</style></head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+/* Three balanced portfolio highlights after removing the employment tile */
+.hero-stats-shell .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.hero-stats-shell .st:nth-child(3){border-right:0}
+@media(max-width:700px){
+ .hero-stats-shell .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .hero-stats-shell .st:last-child:nth-child(odd){grid-column:1/-1;justify-content:center;border-right:0;border-bottom:0;padding-top:14px}
+}</style></head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 <header class="site-header">
   <div class="w header-inner">
     <a class="brand" href="#top" aria-label="Dhananjith Swarnahansa — Home">
@@ -437,10 +444,6 @@ const DEF={
   {
    "num": "BSc (Hons)",
    "label": "Industrial IT"
-  },
-  {
-   "num": "Project Manager Intern",
-   "label": "@ Trex Labs"
   },
   {
    "num": "7+ Projects",
