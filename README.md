@@ -3,6 +3,13 @@
 Static portfolio website (plain HTML, CSS and JavaScript, no build step).
 
 ## Files
+## Project documentation
+
+- `PROJECT_INDEX.md` – index separating existing published/academic projects from planning simulations.
+- `case-studies/` – six GitHub-hosted project-management simulation documents, including Telecom Service Assurance, AegisLogix, e-Transit, AeroHive, ColdPulse, and DIMO AgriCare.
+
+Simulation documents clearly identify assumptions, planned targets, and outcomes that have not been measured in a live environment.
+
 - `index.html` – the whole website. All content lives in the `DEF` block near the top of the script, between the `EDIT YOUR CONTENT HERE` comments.
 - `assets/photo.webp` – profile photo (background removed).
 - `assets/portfolio-preview.png` – Open Graph image for LinkedIn and other social previews.
@@ -23,5 +30,5 @@ Static portfolio website (plain HTML, CSS and JavaScript, no build step).
 
 ## Notes
 - The built-in edit mode from the Claude version is disabled here. Edit the `DEF` data instead.
-- Email button opens a Gmail compose window. LinkedIn is the primary social contact link; the personal phone number is not displayed publicly.
+- The contact form submits through FormSubmit's AJAX endpoint without opening a visitor's mail app. The recipient must complete the one-time activation email before messages can be delivered. LinkedIn is the primary social contact link; the personal phone number is not displayed publicly.
 - Keep CV, LinkedIn and this site consistent before applying.
