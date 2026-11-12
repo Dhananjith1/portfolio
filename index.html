@@ -297,7 +297,52 @@ footer{border-color:var(--bd);background:rgba(2,10,22,.66)}
 }
 @media(max-width:390px){.w{width:calc(100% - 28px)}.brand-copy strong{font-size:13px}.brand-copy small{font-size:12px}.hero-name{font-size:48px}.btn{padding:12px 13px}.st{gap:7px}.st-copy b{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.hero h1,.portrait-stage,.fc,.social-icon,.btn{animation:none!important;transition:none!important}}
-</style><style></style><style></style></head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+</style><style></style><style>
+/* First-screen fit and visible contact actions */
+.hero{min-height:calc(100svh - 106px);padding-top:18px;padding-bottom:18px}
+.hero-layout{grid-template-rows:minmax(500px,1fr) auto}
+.hero-copy{padding:18px 0 30px}
+.hero h1{margin:17px 0 13px}
+.hero h1 .hello{font-size:clamp(34px,3.7vw,49px)}
+.hero-name{font-size:clamp(58px,5.7vw,84px)}
+.hero .hero-role{min-height:32px;margin:15px 0 12px;font-size:clamp(17px,1.6vw,21px);white-space:nowrap;overflow:hidden}
+.hero .hero-intro{max-width:740px;margin:0 0 22px;font-size:clamp(15px,1.35vw,18px);line-height:1.55}
+.btns{gap:13px}
+.btn{min-height:56px;padding:13px 21px;font-size:16px}
+.soc{margin-top:20px;gap:12px}
+.social-icon{width:48px;height:48px}
+.typed-role{display:inline-block;min-height:1em}
+.cr{display:inline-block;width:2px;height:1.05em;background:#1d9bff;margin-left:5px;vertical-align:-3px;animation:bl .78s steps(2,end) infinite}
+.connect-note{right:-2%;top:54%}
+.float-two{top:37%}
+@media(max-width:1180px){
+ .hero h1 .hello{font-size:clamp(32px,3.6vw,44px)}
+ .hero-name{font-size:clamp(54px,5.5vw,74px)}
+ .hero .hero-intro{max-width:650px}
+}
+@media(max-width:980px){
+ .hero{padding-top:20px;padding-bottom:22px}
+ .hero-layout{grid-template-rows:auto auto}
+ .hero-copy{padding:25px 0 22px}
+ .hero h1 .hello{font-size:38px}
+ .hero-name{font-size:clamp(56px,7vw,78px)}
+ .hero .hero-intro{max-width:100%}
+ .hero .hero-role{white-space:normal}
+}
+@media(max-width:700px){
+ .hero{padding:18px 0 22px}
+ .hero-copy{padding:18px 0 12px}
+ .hero h1{margin:17px 0 12px}
+ .hero h1 .hello{font-size:34px}
+ .hero-name{font-size:clamp(49px,11.5vw,70px)}
+ .hero .hero-role{font-size:16px;margin:14px 0 10px;min-height:27px}
+ .hero .hero-intro{font-size:15px;line-height:1.55;margin-bottom:19px}
+ .btn{min-height:52px;padding:12px 16px;font-size:14px}
+ .social-icon{width:45px;height:45px}
+ .soc{margin-top:17px}
+}
+@media(prefers-reduced-motion:reduce){.cr{animation:none;opacity:1}}
+</style></head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 <header class="site-header">
   <div class="w header-inner">
     <a class="brand" href="#top" aria-label="Dhananjith Swarnahansa — Home">
@@ -325,10 +370,10 @@ footer{border-color:var(--bd);background:rgba(2,10,22,.66)}
     <div class="hero-copy">
       <span class="eyebrow"><i></i> IT PROJECT MANAGEMENT · AGILE DELIVERY</span>
       <h1 id="hn"><span class="hello">Hello, I’m</span><span class="hero-name"><span>Dhananjith</span><span class="grad">Swarnahansa</span></span></h1>
-      <p class="hero-role" id="ht">Project Manager Intern | IT Enthusiast | Lifelong Learner<i class="cr"></i></p>
+      <p class="hero-role" id="ht" aria-label="Project Manager Intern, IT Enthusiast, Lifelong Learner"><span class="typed-role">Project Manager Intern</span><i class="cr" aria-hidden="true"></i></p>
       <p class="hero-intro" id="hg">Exploring the intersection of technology and project management to create impactful solutions and grow in my professional journey.</p>
       <div class="btns">
-        <a class="btn p" id="viewProjects" href="#proj"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>View My Portfolio <span class="arrow">→</span></a>
+        <a class="btn p contact-hero-btn" id="em" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>Contact Me <span class="arrow">→</span></a>
         <a class="btn cv-btn" id="cv" download="Dhananjith_Swarnahansa_CV.pdf" href="CV.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v3h16v-3"/></svg>Download CV</a>
       </div>
       <div class="soc" id="soc" aria-label="Social links">
@@ -683,7 +728,29 @@ addEventListener("scroll",()=>{if(scrollY<160)navMenu?.querySelectorAll("a").for
 $("#yr").textContent=new Date().getFullYear();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add("in");if(t.classList.contains("st"))cnt(t.querySelector("b"));io.unobserve(t);setTimeout(()=>t.classList.add("done"),1100)}),{threshold:.1});
 function cnt(el){const t=el.textContent,m=t.match(/[\d,]+/);if(!m)return;const n=+m[0].replace(/,/g,""),pre=t.slice(0,m.index),suf=t.slice(m.index+m[0].length);let s=null;const f=ts=>{s=s||ts;const p=Math.min((ts-s)/1500,1);el.textContent=pre+Math.round(n*(1-Math.pow(1-p,3))).toLocaleString("en-US")+suf;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
-function typer(){const el=$("#ht"),w=D.prof[0].title.split("|").map(s=>s.trim()).filter(Boolean);clearInterval(window._t);let i=0,j=0,d=false;window._t=setInterval(()=>{const s=w[i];j+=d?-1:1;el.innerHTML=E(s.slice(0,Math.max(j,0)))+'<i class="cr"></i>';if(!d&&j>=s.length){d=true;j=s.length+22}else if(d&&j<=0){d=false;i=(i+1)%w.length;j=0}},55)}
+function typer(){
+ const el=$("#ht");if(!el)return;
+ const words=(D.prof[0].title||"Project Manager Intern | IT Enthusiast | Lifelong Learner").split("|").map(s=>s.trim()).filter(Boolean);
+ if(!words.length)return;
+ clearInterval(window._t);
+ el.setAttribute("aria-label",words.join(", "));
+ el.innerHTML='<span class="typed-role"></span><i class="cr" aria-hidden="true"></i>';
+ const typed=el.querySelector(".typed-role");
+ let wordIndex=0,charIndex=0,deleting=false,pause=0;
+ window._t=setInterval(()=>{
+  const word=words[wordIndex];
+  if(!deleting){
+   charIndex++;
+   typed.textContent=word.slice(0,charIndex);
+   if(charIndex>=word.length){deleting=true;pause=18;}
+  }else if(pause>0){pause--;}
+  else{
+   charIndex--;
+   typed.textContent=word.slice(0,Math.max(0,charIndex));
+   if(charIndex<=0){deleting=false;pause=4;wordIndex=(wordIndex+1)%words.length;}
+  }
+ },78);
+}
 function fx(){document.querySelectorAll(".card,.st,.sh,.pic,.ct").forEach((el,i)=>{if(el.classList.contains("rv"))return;el.classList.add("rv");el.style.transitionDelay=(i%4)*90+"ms";io.observe(el)});typer()}
 const R0=render;render=()=>{R0();fx()};
 document.addEventListener("mousemove",e=>{$("#gl").style.transform=`translate(${e.clientX}px,${e.clientY}px)`;});
