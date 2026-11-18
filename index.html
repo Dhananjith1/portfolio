@@ -566,6 +566,9 @@ footer{border-color:var(--bd);background:rgba(2,10,22,.66)}
   outline:3px solid #77baff;
   outline-offset:3px;
 }
+
+/* Certification progress label */
+.cert-status{display:inline-flex;align-items:center;width:fit-content;margin-top:8px;padding:4px 10px;border:1px solid var(--bd);border-radius:999px;background:color-mix(in srgb,var(--ac) 10%,var(--card));color:var(--ac);font-size:12px;font-weight:700;line-height:1.4}
 </style></head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 <header class="site-header">
   <div class="w header-inner">
@@ -906,6 +909,11 @@ const DEF={
  ],
  "cert": [
   {
+   "title": "IBM IT Project Manager Professional Certificate",
+   "org": "IBM",
+   "status": "In Progress"
+  },
+  {
    "title": "Agile Scrum Master",
    "org": "Simplilearn"
   },
@@ -923,7 +931,7 @@ const DEF={
 const SC={prof:[["name","t"],["title","t"],["tagline","a1"],["about","a1"],["email","t"],["phone","t"],["location","t"],["linkedin","t"],["cv","t"]],
 stats:[["num","t"],["label","t"]],skills:[["group","t"],["items","l"]],exp:[["role","t"],["company","t"],["period","t"],["bullets","a"]],
 proj:[["title","t"],["tag","t"],["desc","a"],["highlight","t"],["link","t"],["linkLabel","t"],["art","t"]],lead:[["role","t"],["org","t"],["period","t"],["bullets","a"]],
-edu:[["title","t"],["org","t"],["period","t"]],cert:[["title","t"],["org","t"]]};
+edu:[["title","t"],["org","t"],["period","t"]],cert:[["title","t"],["org","t"],["status","t"]]};
 const LB={art:"Cover style (telecom, supply, transit, drone, cold, health, code) - leave empty for auto",cv:"CV PDF link (URL)",linkLabel:"Project link label",items:"Items (comma separated)",bullets:"Bullet points (one per line)",desc:"Description (one per line)",link:"Case study link (URL)"};
 const GR={telecom:['#2563eb','#06b6d4'],supply:['#7c3aed','#2563eb'],transit:['#059669','#0ea5e9'],drone:['#f97316','#db2777'],cold:['#0ea5e9','#6366f1'],health:['#e11d48','#7c3aed'],code:['#334155','#2563eb']};
 const SCN={
@@ -955,7 +963,7 @@ $("#ex").innerHTML=D.exp.map((s,i)=>`<div class="card">${ctl("exp",i)}<div class
 $("#pj").innerHTML=D.proj.map((s,i)=>`<div class="card">${ctl("proj",i)}${cover(s,i)}<span class="bdg ${/campus|independent/i.test(s.tag)?"real":"sim"}">${/independent/i.test(s.tag)?"● Published independent project":/campus/i.test(s.tag)?"● Real project (Campus)":"◌ Simulation"}</span><h3>${E(s.title)}</h3><span class="tag">${E(s.tag)}</span>${ul(s.desc)}${s.highlight?`<div class="hl">★ ${E(s.highlight)}${!/campus|independent/i.test(s.tag)&&!/simulat/i.test(s.highlight)?' <em class="sm">· simulated result</em>':""}</div>`:""}${s.link?`<a class="lk" target="_blank" rel="noopener noreferrer" href="${E(s.link)}">${E(s.linkLabel||"Case Study")} ↗</a>`:""}</div>`).join("");
 $("#ld").innerHTML=D.lead.map((s,i)=>`<div class="card">${ctl("lead",i)}<div class="per">${E(s.period)}</div><h3>${E(s.role)}</h3><span class="tag">${E(s.org)}</span>${ul(s.bullets)}</div>`).join("");
 $("#ed").innerHTML=D.edu.map((s,i)=>`<div class="card">${ctl("edu",i)}<div class="per">${E(s.period)}</div><h3 style="font-size:17px">${E(s.title)}</h3><span class="tag">${E(s.org)}</span></div>`).join("");
-$("#ce").innerHTML=D.cert.map((s,i)=>`<div class="card">${ctl("cert",i)}<h3 style="font-size:17px">${E(s.title)}</h3><span class="tag">${E(s.org)}</span></div>`).join("");}
+$("#ce").innerHTML=D.cert.map((s,i)=>`<div class="card">${ctl("cert",i)}<h3 style="font-size:17px">${E(s.title)}</h3><span class="tag">${E(s.org)}</span>${s.status?`<span class="cert-status">${E(s.status)}</span>`:""}</div>`).join("");}
 function openF(k,i){const f=SC[k],o=i<0?{}:D[k][i];
 $("#fm").innerHTML=`<h3>${i<0?"Add":"Edit"} item</h3>`+f.map(([n,t])=>{let v=o[n]==null?(t=="l"||t=="a"?[]:""):o[n];if(Array.isArray(v))v=v.join(t=="l"?", ":"\n");
 const lb=LB[n]||n[0].toUpperCase()+n.slice(1);
