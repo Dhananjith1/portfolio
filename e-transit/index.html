@@ -95,7 +95,7 @@
   }
   function loadDB(){try{const raw=localStorage.getItem(DB_KEY);if(raw){const d=JSON.parse(raw);if(d&&Array.isArray(d.routes)&&Array.isArray(d.cards))return d;}}catch(e){}return makeSeed();}
   let db=loadDB(); if(!localStorage.getItem(DB_KEY)) localStorage.setItem(DB_KEY,JSON.stringify(db));
-  let session=null; let activePage='overview'; let authMode='signin'; let selectedFare=0; let selectedMethod='Card'; let currentFilter='All';
+  let session=null; let activePage='overview'; let authMode='signin'; let staffRoleChoice='conductor'; let selectedFare=0; let selectedMethod='Card'; let currentFilter='All';
   function restoreSession(){
     try{
       const s=JSON.parse(localStorage.getItem(SESSION_KEY)||sessionStorage.getItem(SESSION_KEY)||'null');
@@ -125,7 +125,17 @@
   const bottomNav={admin:['overview','routes','fleet','cards'],finance:['overview','reconciliation','settlements','transactions'],conductor:['shift','pos','history'],passenger:['mycard','journeys']};
   function brand(){return `<div class="brand"><div class="brand-mark"><svg viewBox="0 0 40 40" fill="none"><path d="M8 25c0-9 5.5-15 14-15 4.3 0 7.8 1.7 10 5l-5.8 3.7c-1.1-1.6-2.4-2.3-4.5-2.3-4.1 0-6.8 3.3-6.8 8.4 0 5 2.7 8.2 6.8 8.2 2.6 0 4.2-1 5.3-3.1l5.9 3.5c-2.5 4.4-6.3 6.5-11.6 6.5C13.5 40 8 34 8 25Z" fill="#F3EDDF" transform="translate(0 -3)"/><path d="M17 22h15" stroke="#D8A75E" stroke-width="3.2" stroke-linecap="round"/></svg></div><div class="brand-name">e<span>·</span>Transit</div></div>`;}
   function renderLogin(){
-    const passengerForm=authMode==='signup'
+    const passengerForm=authMode==='staff'
+      ? `<h2>${roleNames[staffRoleChoice]} sign in</h2><p>Enter your staff demo account details to continue.</p>
+        <form id="staff-login-form">
+          <div class="field"><label for="staff-username">Username</label><input id="staff-username" name="username" autocomplete="username" maxlength="80" placeholder="Enter your staff username" required /></div>
+          <div class="field"><label for="staff-password">Password</label><div class="input-wrap"><input id="staff-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required /><button class="show-pass" type="button" data-action="toggle-password" data-target="staff-password" aria-label="Show password">${I('eye')}</button></div></div>
+          <label class="remember-row"><input type="checkbox" name="remember" /> Remember me on this device</label>
+          <button class="btn btn-primary btn-block" type="submit">Sign in to ${roleNames[staffRoleChoice]} ${I('arrow')}</button>
+        </form>
+        <div class="auth-switch"><button type="button" data-action="back-to-passenger">← Back to passenger sign in</button></div>
+        <div class="demo-hint"><b>Staff-only preview.</b> Use the account details provided to your team. Passenger visitors cannot enter this workspace without staff sign-in.</div>`
+      : authMode==='signup'
       ? `<h2>Create your passenger account</h2><p>Register your own travel profile and get a demo transit card.</p>
         <form id="signup-form">
           <div class="field"><label for="full-name">Full name</label><input id="full-name" name="name" autocomplete="name" minlength="2" maxlength="80" placeholder="Your name" required /></div>
@@ -147,7 +157,7 @@
         </form>
         <div class="auth-switch">New to e-Transit? <button type="button" data-action="show-signup">Create a passenger account</button></div>
         <div class="demo-hint"><b>First time here?</b> Create your own passenger account. Use your own email and choose a password; there are no shared passenger usernames or passwords.</div>`;
-    $('#app').innerHTML=`<main class="login"><section class="login-visual"><div>${brand()}<div class="eyebrow" style="color:#d9c9aa;margin-top:38px">SMART TRANSIT OPERATIONS</div></div><div class="login-copy"><div class="eyebrow" style="color:#e2bd7d">MOVE PEOPLE. CONNECT PLACES.</div><h1>Every journey,<br><em class="serif" style="font-weight:400;color:#e8bd78">in sync.</em></h1><p>A clearer way to run routes, support conductors and keep passengers moving. One thoughtful workspace for everyday transit operations.</p><div class="visual-pills"><span class="visual-pill">Route operations</span><span class="visual-pill">Fare collection</span><span class="visual-pill">Passenger cards</span></div></div><div style="font-size:10px;color:#d4ded5">A Sri Lanka-focused transit product concept · Public interactive preview</div></section><section class="login-side"><div class="login-card">${brand()}${passengerForm}<div class="demo-divider"><span>Explore the operations preview</span></div><p class="muted small" style="margin:0 0 12px">These are public demo workspaces, not staff accounts. No employee credentials are displayed.</p><div class="demo-portals"><button type="button" class="demo-portal" data-action="enter-demo-role" data-role="conductor">${I('bus')}<span><strong>Conductor</strong><small>Open POS demo</small></span></button><button type="button" class="demo-portal" data-action="enter-demo-role" data-role="finance">${I('chart')}<span><strong>Finance</strong><small>Open finance demo</small></span></button><button type="button" class="demo-portal" data-action="enter-demo-role" data-role="admin">${I('shield')}<span><strong>Admin</strong><small>Open admin demo</small></span></button></div><div class="login-foot">© 2026 e-Transit · Public product preview · No live payment network or shared cloud accounts</div></div></section></main>`;
+    $('#app').innerHTML=`<main class="login"><section class="login-visual"><div>${brand()}<div class="eyebrow" style="color:#d9c9aa;margin-top:38px">SMART TRANSIT OPERATIONS</div></div><div class="login-copy"><div class="eyebrow" style="color:#e2bd7d">MOVE PEOPLE. CONNECT PLACES.</div><h1>Every journey,<br><em class="serif" style="font-weight:400;color:#e8bd78">in sync.</em></h1><p>A clearer way to run routes, support conductors and keep passengers moving. One thoughtful workspace for everyday transit operations.</p><div class="visual-pills"><span class="visual-pill">Route operations</span><span class="visual-pill">Fare collection</span><span class="visual-pill">Passenger cards</span></div></div><div style="font-size:10px;color:#d4ded5">A Sri Lanka-focused transit product concept · Public interactive preview</div></section><section class="login-side"><div class="login-card">${brand()}${passengerForm}<div class="demo-divider"><span>Explore the operations preview</span></div><p class="muted small" style="margin:0 0 12px">These are public demo workspaces, not staff accounts. No employee credentials are displayed.</p><div class="demo-portals"><button type="button" class="demo-portal" data-action="show-staff-login" data-role="conductor">${I('bus')}<span><strong>Conductor</strong><small>Staff sign in</small></span></button><button type="button" class="demo-portal" data-action="show-staff-login" data-role="finance">${I('chart')}<span><strong>Finance</strong><small>Staff sign in</small></span></button><button type="button" class="demo-portal" data-action="show-staff-login" data-role="admin">${I('shield')}<span><strong>Admin</strong><small>Staff sign in</small></span></button></div><div class="login-foot">© 2026 e-Transit · Public product preview · No live payment network or shared cloud accounts</div></div></section></main>`;
   }
   function sidebar(){const nav=navConfig[session.role];let content='';nav.forEach(item=>{if(item.length===2){content+=`<div class="nav-label">${item[1]}</div>`;}else{content+=`<button class="nav-link ${activePage===item[0]?'active':''}" data-action="navigate" data-page="${item[0]}">${I(item[2])}<span>${item[1]}</span></button>`;}});return `<aside class="sidebar">${brand()}<div class="workspace-switch"><small>Current workspace</small><strong>Ceylon Transit Demo</strong></div><nav class="nav-list">${content}</nav><div class="sidebar-bottom"><div class="sync-indicator"><span class="dot"></span> Local demo data · ${db.online?'Online mode':'Offline mode'}</div><div class="user-mini">${avatar(session.name)}<div><strong>${esc(session.name)}</strong><small>${roleNames[session.role]}</small></div><button data-action="logout" title="Sign out">${I('logout')}</button></div></div></aside>`;}
   function shell(content){const bottom=bottomNav[session.role].map(p=>{const labels={overview:'Home',routes:'Routes',fleet:'Fleet',cards:'Cards',reconciliation:'Review',settlements:'Payouts',transactions:'Activity',shift:'Shift',pos:'Collect',history:'Trips',mycard:'My card',journeys:'Trips'};const navItem=navConfig[session.role].find(x=>x[0]===p);return `<button class="${activePage===p?'active':''}" data-action="navigate" data-page="${p}">${I(navItem?.[2]||'grid')}<span>${labels[p]||p}</span></button>`;}).join('');$('#app').innerHTML=`<div class="demo-ribbon">DEMO WORKSPACE · Sample data is saved only in this browser · No live payments or shared accounts</div><div class="app-shell">${sidebar()}<main class="main"><header class="topbar"><div class="crumb">Ceylon Transit <span style="margin:0 7px;color:#c0c8c0">/</span> <b>${esc(pageTitle())}</b></div><div class="top-actions"><span class="top-date">${new Date().toLocaleDateString('en-LK',{weekday:'short',day:'numeric',month:'short',year:'numeric'})}</span><button class="icon-btn" data-action="toggle-network" title="Toggle simulated network">${I(db.online?'refresh':'alert')}</button><button class="icon-btn" data-action="logout" title="Sign out">${I('logout')}</button></div></header><div class="content">${content}<div class="footer-note">e-Transit · Interactive product demo · Local browser data only</div></div></main></div><nav class="mobile-nav">${bottom}</nav>`;}
@@ -220,12 +230,19 @@
       toast('Your passenger account and transit card are ready.');
     }catch(e){toast(e.message||'Unable to create account on this browser.');}
   }
-  function enterDemoRole(role){
-    const demoNames={admin:'Demo Administrator',finance:'Demo Finance Officer',conductor:'Demo Conductor'};
-    if(!demoNames[role])return;
-    session={role,email:`demo-${role}@local.e-transit`,name:demoNames[role],demo:true};
-    persistSession(session,false);activePage=role==='conductor'?'shift':'overview';
-    render();toast(`${roleNames[role]} demo workspace opened. Demo access is public.`);
+  const staffDemoAccounts={
+    conductor:{username:'conductor.demo',hash:'666303f51ca337992bec82bdc7933638c1899614241e50a05db4d72de30d3456',name:'Demo Conductor'},
+    finance:{username:'finance.demo',hash:'7379584648b325946396ab09c5b306b26ee7c9eb723efd09e9eef6c53dab1feb',name:'Demo Finance Officer'},
+    admin:{username:'admin.demo',hash:'9e697a0ef43d1d4fd3f0bf3b018f3c607b2bda321a636acdc4e2c633b9ec081e',name:'Demo Administrator'}
+  };
+  function showStaffLogin(role){if(!staffDemoAccounts[role])return;staffRoleChoice=role;authMode='staff';renderLogin();}
+  async function sha256Hex(value){const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));return [...new Uint8Array(bytes)].map(b=>b.toString(16).padStart(2,'0')).join('');}
+  async function loginStaff(form){
+    const fd=new FormData(form),username=String(fd.get('username')||'').trim(),password=String(fd.get('password')||'');
+    const account=staffDemoAccounts[staffRoleChoice];
+    if(!account||username!==account.username||await sha256Hex(username+':'+password)!==account.hash){toast('Invalid staff username or password.');return;}
+    session={role:staffRoleChoice,email:`${username}@local.e-transit`,name:account.name,demo:true};
+    persistSession(session,fd.get('remember')==='on');activePage=staffRoleChoice==='conductor'?'shift':'overview';audit(`${roleNames[staffRoleChoice]} signed in`,session.name);render();
   }
   function logout(){if(session)audit('Signed out',session.name);session=null;localStorage.removeItem(SESSION_KEY);sessionStorage.removeItem(SESSION_KEY);render();}
   function openShift(){const bus=db.buses.find(b=>b.status==='Available');const route=db.routes.find(r=>r.status==='Active'&&(!bus||r.id===bus.route))||db.routes.find(r=>r.status==='Active');if(!route){toast('No active route is available.');return;}if(!bus){toast('No available bus. Update a vehicle to Available first.');activePage='shift';render();return;}db.shifts.unshift({id:id('SH'),conductor:session.email,conductorName:session.name,bus:bus.id,route:route.id,status:'Open',startedAt:now(),closedAt:null});bus.status='On route';audit(`Shift opened · ${bus.plate} · ${route.code}`);saveDB();activePage='shift';render();toast('Your shift is now open.');}
@@ -238,7 +255,8 @@
   function handleAction(el){const a=el.dataset.action;switch(a){
     case'show-signup':authMode='signup';renderLogin();break;
     case'show-signin':authMode='signin';renderLogin();break;
-    case'enter-demo-role':enterDemoRole(el.dataset.role);break;
+    case'show-staff-login':showStaffLogin(el.dataset.role);break;
+    case'back-to-passenger':authMode='signin';renderLogin();break;
     case'toggle-password':{const p=$('#'+(el.dataset.target||'password'));if(p)p.type=p.type==='password'?'text':'password';break;}
     case'logout':logout();break;
     case'navigate':activePage=el.dataset.page;render();break;
@@ -264,7 +282,7 @@
     case'reset-data':if(confirm('Reset all demo records in this browser? This cannot be undone.')){db=makeSeed();saveDB();audit('Demo data reset');render();toast('Demo data reset.');}break;
   }}
   document.addEventListener('click',e=>{const el=e.target.closest('[data-action]');if(el){e.preventDefault();handleAction(el);}});
-  document.addEventListener('submit',async e=>{if(e.target.id==='login-form'){e.preventDefault();const f=e.target;await login($('#email').value,$('#password').value,f.elements.remember.checked);}else if(e.target.id==='signup-form'){e.preventDefault();await signupPassenger(e.target);}else if(e.target.id==='fare-form'){e.preventDefault();recordFare(e.target);}});
+  document.addEventListener('submit',async e=>{if(e.target.id==='login-form'){e.preventDefault();const f=e.target;await login($('#email').value,$('#password').value,f.elements.remember.checked);}else if(e.target.id==='signup-form'){e.preventDefault();await signupPassenger(e.target);}else if(e.target.id==='staff-login-form'){e.preventDefault();await loginStaff(e.target);}else if(e.target.id==='fare-form'){e.preventDefault();recordFare(e.target);}});
   document.addEventListener('input',e=>{if(e.target.dataset.search==='cards'){const q=e.target.value.toLowerCase();$('#cards-rows').innerHTML=cardRows(db.cards.filter(c=>`${c.id} ${c.name} ${c.type}`.toLowerCase().includes(q)));}if(e.target.dataset.search==='transactions'){const q=e.target.value.toLowerCase();const st=$('#tx-filter')?.value||'All';const m=$('#tx-method')?.value||'All methods';$('#tx-rows').innerHTML=txRows(db.transactions.filter(t=>`${t.id} ${t.card} ${t.passenger} ${t.route}`.toLowerCase().includes(q)&&(st==='All'||t.status===st)&&(m==='All methods'||t.method===m)));}});
   document.addEventListener('change',e=>{if(e.target.id==='tx-filter'||e.target.id==='tx-method'){const q=$('[data-search="transactions"]')?.value.toLowerCase()||'';const st=$('#tx-filter')?.value||'All';const m=$('#tx-method')?.value||'All methods';$('#tx-rows').innerHTML=txRows(db.transactions.filter(t=>`${t.id} ${t.card} ${t.passenger} ${t.route}`.toLowerCase().includes(q)&&(st==='All'||t.status===st)&&(m==='All methods'||t.method===m)));}if(e.target.id==='restore-file'&&e.target.files[0]){const f=e.target.files[0];const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(!Array.isArray(data.cards)||!Array.isArray(data.routes)||!Array.isArray(data.transactions))throw new Error();db=data;saveDB();audit('Demo backup restored');render();toast('Backup restored.');}catch(err){toast('That backup file is not valid for e-Transit.');}};reader.readAsText(f);}});
   window.addEventListener('storage',()=>{db=loadDB();if(session)render();});
