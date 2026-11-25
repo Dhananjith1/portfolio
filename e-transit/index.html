@@ -102,9 +102,12 @@
     if(!Array.isArray(d.shifts))d.shifts=[];
     if(!Array.isArray(d.assignments))d.assignments=[];
     if(!Array.isArray(d.staff)){
-      d.staff=[{id:'CON-001',name:'Saman Jayasinghe',role:'conductor',username:'conductor.demo',email:'',phone:'',status:'Active',demoLogin:true,salt:'',passwordHash:''}];
+      d.staff=[{id:'CON-001',name:'Demo Conductor',role:'conductor',username:'conductor.demo',email:'',phone:'',status:'Active',demoLogin:true,salt:'',passwordHash:''}];
     }
     d.staff.forEach(s=>{if(!s.role)s.role='conductor';if(!s.status)s.status='Active';});
+    if(!d.staff.some(s=>s.role==='conductor'&&String(s.username||'').toLowerCase()==='conductor.demo')){
+      d.staff.unshift({id:'CON-DEMO-LOGIN',name:'Demo Conductor',role:'conductor',username:'conductor.demo',email:'',phone:'',status:'Active',demoLogin:true,salt:'',passwordHash:''});
+    }
     d.buses.forEach(b=>{if(!b.capacity)b.capacity=45;if(!('route' in b))b.route='';if(!('driver' in b))b.driver='';if(b.status==='On route'&&!d.shifts.some(s=>s.bus===b.id&&s.status==='Open'))b.status='Available';});
     return d;
   }
@@ -141,16 +144,18 @@
   const bottomNav={admin:['overview','routes','fleet','assignments'],finance:['overview','reconciliation','settlements','transactions'],conductor:['shift','pos','history'],passenger:['mycard','journeys']};
   function brand(){return `<div class="brand"><div class="brand-mark"><svg viewBox="0 0 40 40" fill="none"><path d="M8 25c0-9 5.5-15 14-15 4.3 0 7.8 1.7 10 5l-5.8 3.7c-1.1-1.6-2.4-2.3-4.5-2.3-4.1 0-6.8 3.3-6.8 8.4 0 5 2.7 8.2 6.8 8.2 2.6 0 4.2-1 5.3-3.1l5.9 3.5c-2.5 4.4-6.3 6.5-11.6 6.5C13.5 40 8 34 8 25Z" fill="#F3EDDF" transform="translate(0 -3)"/><path d="M17 22h15" stroke="#D8A75E" stroke-width="3.2" stroke-linecap="round"/></svg></div><div class="brand-name">e<span>·</span>Transit</div></div>`;}
   function renderLogin(){
+    const demoAccount=staffDemoAccounts[staffRoleChoice];
+    const showDemoCredentials=staffRoleChoice!=='conductor'||db.staff.some(s=>s.role==='conductor'&&String(s.username||'').toLowerCase()===demoAccount.username&&s.demoLogin);
     const passengerForm=authMode==='staff'
       ? `<h2>${roleNames[staffRoleChoice]} sign in</h2><p>Enter your staff demo account details to continue.</p>
         <form id="staff-login-form">
-          <div class="field"><label for="staff-username">Username</label><input id="staff-username" name="username" autocomplete="username" maxlength="80" placeholder="Enter your staff username" required /></div>
-          <div class="field"><label for="staff-password">Password</label><div class="input-wrap"><input id="staff-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required /><button class="show-pass" type="button" data-action="toggle-password" data-target="staff-password" aria-label="Show password">${I('eye')}</button></div></div>
+          <div class="field"><label for="staff-username">Username</label><input id="staff-username" name="username" autocomplete="username" maxlength="80" value="${esc(demoAccount.username)}" placeholder="Enter your staff username" required /></div>
+          <div class="field"><label for="staff-password">Password</label><div class="input-wrap"><input id="staff-password" name="password" type="password" autocomplete="current-password" value="${showDemoCredentials?esc(demoAccount.password):''}" placeholder="Enter your password" required /><button class="show-pass" type="button" data-action="toggle-password" data-target="staff-password" aria-label="Show password">${I('eye')}</button></div></div>
           <label class="remember-row"><input type="checkbox" name="remember" /> Remember me on this device</label>
           <button class="btn btn-primary btn-block" type="submit">Sign in to ${roleNames[staffRoleChoice]} ${I('arrow')}</button>
         </form>
         <div class="auth-switch"><button type="button" data-action="back-to-passenger">← Back to passenger sign in</button></div>
-        <div class="demo-hint"><b>Staff-only preview.</b> Use the account details provided to your team. Passenger visitors cannot enter this workspace without staff sign-in.</div>`
+        ${showDemoCredentials?'<div class="demo-hint"><b>Demo login details</b><br>Username: <code>'+esc(demoAccount.username)+'</code><br>Password: <code>'+esc(demoAccount.password)+'</code><br>These credentials are for this public demo only.</div>':'<div class="demo-hint"><b>Conductor account</b><br>Use the username and password configured by the administrator for this conductor.</div>'}`
       : authMode==='signup'
       ? `<h2>Create your passenger account</h2><p>Register your own travel profile and get a demo transit card.</p>
         <form id="signup-form">
@@ -274,9 +279,9 @@
     }catch(e){toast(e.message||'Unable to create account on this browser.');}
   }
   const staffDemoAccounts={
-    conductor:{username:'conductor.demo',hash:'666303f51ca337992bec82bdc7933638c1899614241e50a05db4d72de30d3456',name:'Demo Conductor'},
-    finance:{username:'finance.demo',hash:'7379584648b325946396ab09c5b306b26ee7c9eb723efd09e9eef6c53dab1feb',name:'Demo Finance Officer'},
-    admin:{username:'admin.demo',hash:'9e697a0ef43d1d4fd3f0bf3b018f3c607b2bda321a636acdc4e2c633b9ec081e',name:'Demo Administrator'}
+    conductor:{username:'conductor.demo',password:'ET-Conductor-2026!',hash:'c430f29caa9509c418f498cc3c4d46c7b68754259b86bf3e0b0f2f73a4515b6e',name:'Demo Conductor'},
+    finance:{username:'finance.demo',password:'ET-Finance-2026!',hash:'c46299cd27a9648c30f338975772ad4f9b0721c54aaeebe03523f30c634aeaf8',name:'Demo Finance Officer'},
+    admin:{username:'admin.demo',password:'ET-Admin-2026!',hash:'c582890b4cd682ee9ba49191e1d82f446f9847da62a51a99930ad1eaba984be2',name:'Demo Administrator'}
   };
   function showStaffLogin(role){if(!staffDemoAccounts[role])return;staffRoleChoice=role;authMode='staff';renderLogin();}
   async function sha256Hex(value){const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));return [...new Uint8Array(bytes)].map(b=>b.toString(16).padStart(2,'0')).join('');}
@@ -286,7 +291,11 @@
       const c=db.staff.find(s=>s.role==='conductor'&&s.username&&s.username.toLowerCase()===username);
       if(!c||c.status!=='Active'){toast('Invalid staff username or password, or account inactive.');return;}
       let valid=false;
-      try{if(c.passwordHash&&c.salt)valid=(await hashPassengerPassword(password,c.salt))===c.passwordHash;else if(c.demoLogin&&fixed&&username===fixed.username)valid=(await sha256Hex(username+':'+password))===fixed.hash;}catch(e){toast(e.message||'Unable to verify conductor account.');return;}
+      try{
+        const defaultDemoValid=!!(c.demoLogin&&fixed&&username===fixed.username&&(await sha256Hex(username+':'+password))===fixed.hash);
+        const savedPasswordValid=!!(c.passwordHash&&c.salt&&(await hashPassengerPassword(password,c.salt))===c.passwordHash);
+        valid=defaultDemoValid||savedPasswordValid;
+      }catch(e){toast(e.message||'Unable to verify conductor account.');return;}
       if(!valid){toast('Invalid staff username or password.');return;}
       session={role:'conductor',staffId:c.id,username:c.username,email:c.email||username+'@local.e-transit',name:c.name,demo:true};
     }else{
