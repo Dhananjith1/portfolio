@@ -593,7 +593,75 @@ body{font-size:18px;line-height:1.7}
  .primary-nav a{font-size:15px}
  .btn{font-size:15px}
 }
-</style></head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+</style>
+<style id="certificate-card-polish">
+/* Clear, separated status and certificate action on certification cards */
+#ce .cert-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:13px;
+  margin-top:16px;
+}
+#ce .cert-status{
+  display:inline-flex;
+  align-items:center;
+  width:fit-content;
+  margin:0;
+  padding:6px 13px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:.01em;
+}
+#ce .cert-status.completed{
+  color:#15803d;
+  background:rgba(34,197,94,.12);
+  border:1px solid rgba(34,197,94,.30);
+}
+#ce .cert-status.in-progress{
+  color:#2687f5;
+  background:rgba(38,135,245,.12);
+  border:1px solid rgba(38,135,245,.28);
+}
+#ce .cert-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:fit-content;
+  min-height:42px;
+  margin:0;
+  padding:9px 15px;
+  border:1px solid color-mix(in srgb,var(--ac) 42%,var(--bd));
+  border-radius:11px;
+  background:color-mix(in srgb,var(--ac) 10%,var(--card));
+  color:var(--ac);
+  font-size:14px;
+  font-weight:700;
+  line-height:1.3;
+  text-decoration:none;
+  transition:transform .2s ease,background .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+#ce .cert-link span{
+  font-size:17px;
+  line-height:1;
+  transition:transform .2s ease;
+}
+#ce .cert-link:hover{
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--ac) 17%,var(--card));
+  border-color:var(--ac);
+  box-shadow:0 7px 18px color-mix(in srgb,var(--ac) 16%,transparent);
+}
+#ce .cert-link:hover span{transform:translate(2px,-2px)}
+#ce .cert-link:focus-visible{
+  outline:3px solid var(--ac);
+  outline-offset:3px;
+}
+</style>
+</head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 <header class="site-header">
   <div class="w header-inner">
     <a class="brand" href="#top" aria-label="Dhananjith Swarnahansa — Home">
@@ -1000,7 +1068,7 @@ $("#ex").innerHTML=D.exp.map((s,i)=>`<div class="card">${ctl("exp",i)}<div class
 $("#pj").innerHTML=D.proj.map((s,i)=>`<div class="card">${ctl("proj",i)}${cover(s,i)}<span class="bdg ${/campus|independent/i.test(s.tag)?"real":"sim"}">${/independent/i.test(s.tag)?"● Published independent project":/campus/i.test(s.tag)?"● Real project (Campus)":"◌ Simulation"}</span><h3>${E(s.title)}</h3><span class="tag">${E(s.tag)}</span>${ul(s.desc)}${s.highlight?`<div class="hl">★ ${E(s.highlight)}${!/campus|independent/i.test(s.tag)&&!/simulat/i.test(s.highlight)?' <em class="sm">· simulated result</em>':""}</div>`:""}${s.link?`<a class="lk" target="_blank" rel="noopener noreferrer" href="${E(s.link)}">${E(s.linkLabel||"Case Study")} ↗</a>`:""}</div>`).join("");
 $("#ld").innerHTML=D.lead.map((s,i)=>`<div class="card">${ctl("lead",i)}<div class="per">${E(s.period)}</div><h3>${E(s.role)}</h3><span class="tag">${E(s.org)}</span>${ul(s.bullets)}</div>`).join("");
 $("#ed").innerHTML=D.edu.map((s,i)=>`<div class="card">${ctl("edu",i)}<div class="per">${E(s.period)}</div><h3 style="font-size:17px">${E(s.title)}</h3><span class="tag">${E(s.org)}</span></div>`).join("");
-$("#ce").innerHTML=D.cert.map((s,i)=>`<div class="card">${ctl("cert",i)}<h3 style="font-size:17px">${E(s.title)}</h3><span class="tag">${E(s.org)}</span>${s.status?`<span class="cert-status">${E(s.status)}</span>`:""}${s.link?`<a class="lk" href="${E(s.link)}" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>`:""}</div>`).join("");}
+$("#ce").innerHTML=D.cert.map((s,i)=>`<div class="card">${ctl("cert",i)}<h3 style="font-size:17px">${E(s.title)}</h3><span class="tag">${E(s.org)}</span>${s.status||s.link?`<div class="cert-actions">${s.status?`<span class="cert-status ${s.status==="Completed"?"completed":"in-progress"}">${E(s.status)}</span>`:""}${s.link?`<a class="cert-link" href="${E(s.link)}" target="_blank" rel="noopener noreferrer">View Certificate <span aria-hidden="true">↗</span></a>`:""}</div>`:""}</div>`).join("");}
 function openF(k,i){const f=SC[k],o=i<0?{}:D[k][i];
 $("#fm").innerHTML=`<h3>${i<0?"Add":"Edit"} item</h3>`+f.map(([n,t])=>{let v=o[n]==null?(t=="l"||t=="a"?[]:""):o[n];if(Array.isArray(v))v=v.join(t=="l"?", ":"\n");
 const lb=LB[n]||n[0].toUpperCase()+n.slice(1);
