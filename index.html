@@ -598,14 +598,17 @@ body{font-size:18px;line-height:1.7}
 /* Clear, separated status and certificate action on certification cards */
 #ce .cert-actions{
   display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:13px;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  width:100%;
   margin-top:16px;
 }
 #ce .cert-status{
   display:inline-flex;
   align-items:center;
+  flex:0 0 auto;
   width:fit-content;
   margin:0;
   padding:6px 13px;
@@ -629,8 +632,10 @@ body{font-size:18px;line-height:1.7}
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  flex:0 0 auto;
   gap:10px;
   width:fit-content;
+  white-space:nowrap;
   min-height:42px;
   margin:0;
   padding:9px 15px;
@@ -659,6 +664,11 @@ body{font-size:18px;line-height:1.7}
 #ce .cert-link:focus-visible{
   outline:3px solid var(--ac);
   outline-offset:3px;
+}
+@media(max-width:380px){
+  #ce .cert-actions{gap:6px}
+  #ce .cert-status{padding:5px 9px;font-size:12px}
+  #ce .cert-link{min-height:38px;padding:8px 10px;font-size:12.5px;gap:6px}
 }
 </style>
 </head><body data-new-gr-c-s-check-loaded="14.1339.0" data-gr-ext-installed="" class="" data-gr-agent-presence-bridge-connection-id="1792609446879-0.238875579151546" data-new-gr-c-s-loaded="14.1339.0"><div id="pg"></div><div id="gl"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
