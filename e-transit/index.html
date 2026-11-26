@@ -111,15 +111,12 @@
     if(!d.staff.some(s=>s.role==='conductor'&&String(s.username||'').toLowerCase()==='conductor.demo')){
       d.staff.unshift({id:'CON-DEMO-LOGIN',name:'Demo Conductor',role:'conductor',username:'conductor.demo',email:'',phone:'',status:'Active',demoLogin:true,salt:'',passwordHash:''});
     }
-    if(!d.demoDutyInitialized){
-      d.demoDutyInitialized=true;
-      const demoConductor=d.staff.find(s=>s.role==='conductor'&&String(s.username||'').toLowerCase()==='conductor.demo');
-      const alreadyUsed=demoConductor&&(d.assignments.some(a=>a.conductorId===demoConductor.id)||d.shifts.some(x=>x.conductorId===demoConductor.id));
-      const demoBus=d.buses.find(b=>b.id==='BUS-014'&&b.status==='Available');
-      const demoRoute=d.routes.find(r=>r.id==='R-001'&&r.status==='Active');
-      if(demoConductor&&!alreadyUsed&&demoBus&&demoRoute){
-        d.assignments.push({id:'DUTY-DEMO-'+todayISO().replaceAll('-',''),conductorId:demoConductor.id,bus:demoBus.id,route:demoRoute.id,driver:demoBus.driver,serviceDate:todayISO(),startTime:'00:00',endTime:'23:59',status:'Scheduled',demoSeed:true,createdAt:now()});
-      }
+    const demoConductor=d.staff.find(s=>s.role==='conductor'&&String(s.username||'').toLowerCase()==='conductor.demo');
+    const hasDutyToday=demoConductor&&d.assignments.some(a=>a.conductorId===demoConductor.id&&a.serviceDate===todayISO());
+    const demoBus=d.buses.find(b=>b.id==='BUS-014'&&b.status==='Available');
+    const demoRoute=d.routes.find(r=>r.id==='R-001'&&r.status==='Active');
+    if(demoConductor&&!hasDutyToday&&demoBus&&demoRoute){
+      d.assignments.push({id:'DUTY-DEMO-'+todayISO().replaceAll('-',''),conductorId:demoConductor.id,bus:demoBus.id,route:demoRoute.id,driver:demoBus.driver,serviceDate:todayISO(),startTime:'00:00',endTime:'23:59',status:'Scheduled',demoSeed:true,createdAt:now()});
     }
     d.buses.forEach(b=>{if(!b.capacity)b.capacity=45;if(!('route' in b))b.route='';if(!('driver' in b))b.driver='';if(b.status==='On route'&&!d.shifts.some(s=>s.bus===b.id&&s.status==='Open'))b.status='Available';});
     return d;
